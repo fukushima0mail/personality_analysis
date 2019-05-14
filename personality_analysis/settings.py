@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ANALYSIS', #　作成したデータベース名
         'USER': 'root', # ログインユーザー名
-        'PASSWORD' : 'kitahara3216',
+        'PASSWORD' : 'kojimatomoki',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
