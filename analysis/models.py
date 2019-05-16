@@ -15,7 +15,7 @@ class User(models.Model):
     password = models.CharField(max_length=20, null=False)
     user_nm = models.CharField(max_length=60, null=False)
     mailto = models.CharField(max_length=60)
-    authority_cd = models.CharField(max_length=2, null=False)
+    authority_cd = models.CharField(max_length=5, null=False)
     use_flg = models.CharField(max_length=2, null=False)
     create_date = models.DateTimeField(default=timezone.now)
     update_date = models.DateTimeField(default=timezone.now)
@@ -23,7 +23,7 @@ class User(models.Model):
 
 class Question(models.Model):
     question_cd = models.CharField(primary_key=True, max_length=6, null=False)
-    goup_cd = models.CharField(max_length=2, null=False)
+    group_cd = models.CharField(max_length=2, null=False)
     question = models.CharField(max_length=255, null=False)
     q_details = models.CharField(max_length=255)
     q_details_1 = models.CharField(max_length=60)
