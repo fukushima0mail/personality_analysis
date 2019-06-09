@@ -1,8 +1,11 @@
 from rest_framework import viewsets
+from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Question, Group, User, Answer
 from .serializers import QuestionSerializer, UserSerializer, AnswerSerializer, GroupSerializer
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+import uuid
+import json
 
 class GroupViewSet(viewsets.ModelViewSet):
     '''
@@ -33,6 +36,15 @@ class QuestionViewSet(viewsets.ModelViewSet):
 class AnswerView(APIView):
 
     def get(self, request, user_cd):
-        res = dict(user_cd=user_cd)
-        print(123)
-        return JsonResponse(res)
+        param = Answer.objects.filter(user=user_cd).values()        
+        return Response(param)
+
+    def post(self, request, user_cd):
+        data = json.loads(request.body)
+        serializer = AnswerSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        
+        item, create = Answer.objects.get_or_create(data)
+        if not create:
+            return HttpResponse("Registered", status=400)
+        return HttpResponse(status=200)
