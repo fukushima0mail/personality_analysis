@@ -38,4 +38,4 @@ class Answer(models.Model):
     answer = models.CharField(max_length=6)
 
     class Meta:
-        unique_together = ('user', 'question')
+        unique_together = (('user', 'question'),)
