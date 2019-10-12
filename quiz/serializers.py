@@ -1,6 +1,6 @@
 from django.db import models
 from rest_framework import serializers
-from analysis.models import Question, User, Group, Answer
+from quiz.models import Question, User, Group, Answer
 import uuid
 
 

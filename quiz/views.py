@@ -8,6 +8,7 @@ from django.db import IntegrityError
 import uuid
 import json
 
+
 class GroupViewSet(viewsets.ModelViewSet):
     '''
     グループビューセット
@@ -15,6 +16,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
 
 class UserViewSet(viewsets.ModelViewSet):
     '''
@@ -25,6 +27,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     filter_fields = ('group',)
 
+
 class QuestionViewSet(viewsets.ModelViewSet):
     '''
     質問ビューセット
@@ -34,16 +37,18 @@ class QuestionViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
     filter_fields = ('group',)
 
+
 class AllAnswerView(APIView):
 
     def get(self, request):
         param = Answer.objects.all().values()
         return Response(param)
 
+
 class AnswerView(APIView):
 
     def get(self, request, user_cd):
-        param = Answer.objects.filter(user=user_cd).values()        
+        param = Answer.objects.filter(user=user_cd).values()
         return Response(param)
 
     def post(self, request, user_cd):
@@ -54,18 +59,18 @@ class AnswerView(APIView):
             serializer.is_valid(raise_exception=True)
 
             try:
-                item,create = Answer.objects.get_or_create(user_id=val["user_id"],
-                                             question_id=val["question_id"],
-                                             defaults=dict(
-                                                answer=val["answer"]
-                                             ))
+                item, create = Answer.objects.get_or_create(user_id=val["user_id"],
+                                                            question_id=val["question_id"],
+                                                            defaults=dict(
+                                                                answer=val["answer"]
+                                                            ))
 
             except IntegrityError:
                 # 複合ユニークキーが登録済みの場合は更新
                 target = Answer.objects.filter(user_id=val["user_id"],
                                                question_id=val["question_id"])
                 target.update(answer=val["answer"])
-                
+
         return HttpResponse(status=200)
 
     def put(self, request, user_cd):

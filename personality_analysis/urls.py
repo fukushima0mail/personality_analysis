@@ -22,6 +22,6 @@ from django.conf.urls import url
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path(r'api/', include("analysis.urls")),
+    path(r'api/', include("quiz.urls")),
     url(r'^jwt_auth/', obtain_jwt_token),
 ]
