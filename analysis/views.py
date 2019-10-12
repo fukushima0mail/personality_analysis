@@ -54,9 +54,12 @@ class AnswerView(APIView):
             serializer.is_valid(raise_exception=True)
 
             try:
-                Answer.objects.get_or_create(user_id=val["user_id"],
+                item,create = Answer.objects.get_or_create(user_id=val["user_id"],
                                              question_id=val["question_id"],
-                                             answer=val["answer"])
+                                             defaults=dict(
+                                                answer=val["answer"]
+                                             ))
+
             except IntegrityError:
                 # 複合ユニークキーが登録済みの場合は更新
                 target = Answer.objects.filter(user_id=val["user_id"],
@@ -69,7 +72,7 @@ class AnswerView(APIView):
         data = json.loads(request.body)
         serializer = AnswerSerializer(data=data)
         serializer.is_valid(raise_exception=True)
-        
+
         param = dict(user_id=data["user_id"], question_id=data["question_id"])
         target = Answer.objects.filter(**param)
         target.update(answer=data["answer"])
