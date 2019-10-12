@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'personality_analysis.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'quize',  # 作成したデータベース名
+        'NAME': 'quiz',  # 作成したデータベース名
         'USER': 'root',  # ログインユーザー名
         'PASSWORD': 'kojimatomoki',
         'HOST': '127.0.0.1',
