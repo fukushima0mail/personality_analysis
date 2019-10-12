@@ -8,21 +8,21 @@ class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = (
-            'group_cd',
-            'group_nm',
+            'group_id',
+            'group_name',
             )
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'user_cd',
-            'group',
             'user_id',
-            'password',
-            'user_nm',
-            'authority_cd',
-            )
+            'user_name',
+            'mail_address',
+            'authority',
+            'correct_answer_rate'
+        )
 
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,3 +40,53 @@ class AnswerSerializer(serializers.Serializer):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.CharField(max_length=6)
+
+
+class RegistGroupValidateSerializer(serializers.ModelSerializer):
+    """グループ登録用シリアライザー"""
+    class Meta:
+        model = Group
+        fields = (
+            'group_name',
+        )
+
+
+class RegistUserValidateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'user_name',
+            'mail_address'
+        )
+
+
+
+class GetUserAnswerValidateSerializer(serializers.ModelSerializer):
+    """指定したユーザの回答取得用シリアライザー"""
+    class Meta:
+        model = Answer
+        fields = (
+            'group_name'
+        )
+
+
+class RegistUserAnswerValidateSerializer(serializers.ModelSerializer):
+    """指定したユーザの回答登録用シリアライザー"""
+    class Meta:
+        model = Answer
+        fields = (
+            'question_id',
+            'answer',
+            'is_correct',
+            'challenge_count'
+        )
+
+
+class GetQuestionValidateSerializer(serializers.ModelSerializer):
+    """問題取得用シリアライザー"""
+    class Meta:
+        model = Question
+        fields = (
+            'group_id',
+            'limit'
+        )

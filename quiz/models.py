@@ -7,7 +7,7 @@ class User(models.Model):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, null=False)
     user_name = models.CharField(max_length=30, unique=True, null=False)
     mail_address = models.CharField(unique=True, max_length=100, null=False)
-    authority = models.BooleanField(max_length=5, default='user', null=False)
+    authority = models.BooleanField(max_length=5, default=False, null=False)
     correct_answer_rate = models.FloatField(null=True)
     is_deleted = models.BooleanField(default=False, null=False)
     create_date = models.DateTimeField(default=timezone.now, null=False)
@@ -16,7 +16,7 @@ class User(models.Model):
 
 class Group(models.Model):
     group_id = models.UUIDField(primary_key=True, default=uuid.uuid4, null=False)
-    group_name = models.CharField(max_length=30, null=False)
+    group_name = models.CharField(max_length=30, unique=True, null=False)
     is_deleted = models.BooleanField(default=False, null=False)
     create_date = models.DateTimeField(default=timezone.now, null=False)
     update_date = models.DateTimeField(default=timezone.now, null=False)
