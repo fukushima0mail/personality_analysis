@@ -23,10 +23,10 @@ class Group(models.Model):
 
 
 class Question(models.Model):
-    question_id = models.IntegerField(primary_key=True, null=False)
+    question_id = models.AutoField(primary_key=True)
     group_id = models.ForeignKey(Group, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    question_type = models.CharField(max_length=6, choices=((1, 'input'), (2, 'select')), default='select', null=False)
+    question_type = models.CharField(max_length=6, choices=(('input', 'input'), ('select', 'select')), default='select', null=False)
     question = models.CharField(max_length=255, null=False)
     shape_path = models.URLField(null=True)
     correct = models.CharField(max_length=255, null=False)

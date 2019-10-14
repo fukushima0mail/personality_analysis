@@ -1,9 +1,10 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.exceptions import NotFound, server_error
-from .models import Group, User, Answer
-from .serializers import GetUserAnswerValidateSerializer, RegistUserAnswerValidateSerializer,\
-    GetQuestionValidateSerializer, RegistGroupValidateSerializer, RegistUserValidateSerializer
+from rest_framework.exceptions import NotFound, APIException
+from .models import Group, User, Answer, Question
+from .serializers import GetUserAnswerValidateSerializer, RegisterUserAnswerValidateSerializer, \
+    GetQuestionValidateSerializer, RegisterGroupValidateSerializer, RegisterUserValidateSerializer, \
+    RegisterQuestionValidateSerializer
 from django.http import HttpResponse
 import json
 
@@ -51,7 +52,7 @@ class GroupView(APIView):
     def post(self, request):
         """グループ登録"""
         param = json.loads(request.body)
-        data = RegistGroupValidateSerializer(data=param)
+        data = RegisterGroupValidateSerializer(data=param)
         data.is_valid(raise_exception=True)
         Group.objects.create(**data.validated_data)
         return HttpResponse(status=204)
@@ -72,7 +73,7 @@ class UserView(APIView):
     def post(self, request):
         """ユーザ情報登録"""
         param = json.loads(request.body)
-        data = RegistUserValidateSerializer(data=param)
+        data = RegisterUserValidateSerializer(data=param)
         data.is_valid(raise_exception=True)
 
         User.objects.create(**data.validated_data)
@@ -102,13 +103,13 @@ class SelectUserAnswerView(APIView):
     """/users/{id}/answer"""
 
     def get(self, request, user_id):
-        """指定したユーザの回答を取得"""
+        """指定したユーザの回答を取得 Todo:作成中"""
         group_id = request.GET.get('group_id')
         data = GetUserAnswerValidateSerializer(data=dict(user_id=user_id, group_id=group_id))
         data.is_valid(raise_exception=True)
 
         try:
-            res = Answer.objects.get(**data)
+            res = Answer.objects.get(**data.validated_data)
         except Answer.DoesNotExist:
             raise NotFound()
         return HttpResponse(res)
@@ -116,13 +117,14 @@ class SelectUserAnswerView(APIView):
     def post(self, request, user_id):
         """指定したユーザの回答を登録"""
         data = json.loads(request.body)
-        data = RegistUserAnswerValidateSerializer(data)
+        data = RegisterUserAnswerValidateSerializer(data=dict(**data, user_id=user_id))
         data.is_valid(raise_exception=True)
 
         try:
-            Answer.objects.create(*data.validated_data, user_id=user_id)
+            Answer.objects.create(**data.validated_data)
         except Exception as e:
-            server_error()
+            raise APIException(e)
+
         return HttpResponse(status=204)
 
 
@@ -132,24 +134,32 @@ class QuestionView(APIView):
     def get(self, request):
         """問題取得"""
         group_id = request.GET.get('group_id')
-        limit = request.GET.get('limit')
+        limit = request.GET.get('limit', 1)
 
         data = GetQuestionValidateSerializer(data=dict(group_id=group_id, limit=limit))
-        data.is_valid(raise_exception=TabError)
-        res = Answer.objects.filter(group_id=data.validated_data['group_id'], answer_id__in=list(1, 2, 3)).values(
+        data.is_valid(raise_exception=True)
+        res = Question.objects.filter(group_id=data.validated_data['group_id']).values(
             'question_id', 'group_id', 'user_id', 'question_type', 'question',
             'shape_path', 'correct', 'choice_1', 'choice_2', 'choice_3', 'choice_4'
-        )
+        )[:limit]
 
         if not res.exists():
             raise NotFound()
 
         return Response(res)
 
-    def post(self, request, user_id):
-        """問題登録(未作成)"""
-        # ToDo: 問題登録API
-        pass
+    def post(self, request):
+        """問題登録"""
+        param = json.loads(request.body)
+        data = RegisterQuestionValidateSerializer(data=param)
+        data.is_valid(raise_exception=True)
+
+        try:
+            Question.objects.create(**data.validated_data)
+        except Exception as e:
+            raise APIException(detail=e)
+
+        return HttpResponse(status=204)
 
 
 class SpecifiedQuestionView(APIView):
