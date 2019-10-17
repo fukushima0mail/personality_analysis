@@ -42,6 +42,7 @@ class Question(models.Model):
 class Answer(models.Model):
     answer_id = models.UUIDField(primary_key=True, default=uuid.uuid4, null=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    group_id = models.ForeignKey(Group, on_delete=models.CASCADE)
     question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.CharField(max_length=20, null=False)
     is_correct = models.BooleanField(default=False, null=False)

@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import NotFound, APIException
@@ -7,7 +9,7 @@ from .serializers import GetUserAnswerValidateSerializer, RegisterUserAnswerVali
     RegisterQuestionValidateSerializer
 from django.http import HttpResponse
 import json
-
+import pandas
 
 # class GroupViewSet(viewsets.ModelViewSet):
 #     """
@@ -103,16 +105,51 @@ class SelectUserAnswerView(APIView):
     """/users/{id}/answer"""
 
     def get(self, request, user_id):
-        """指定したユーザの回答を取得 Todo:作成中"""
-        group_id = request.GET.get('group_id')
-        data = GetUserAnswerValidateSerializer(data=dict(user_id=user_id, group_id=group_id))
+        """指定したユーザの回答を取得"""
+        param = dict(user_id=user_id)
+        if request.GET.get('group_id'):
+            param['group_id'] = request.GET.get('group_id')
+
+        data = GetUserAnswerValidateSerializer(data=param)
         data.is_valid(raise_exception=True)
 
         try:
-            res = Answer.objects.get(**data.validated_data)
+            answers = Answer.objects.filter(**data.validated_data, is_deleted=False).values(
+                'group_id', 'is_correct', 'challenge_count')
         except Answer.DoesNotExist:
             raise NotFound()
-        return HttpResponse(res)
+
+        res = self._Make_response(answers)
+        return Response(res)
+
+    def _Make_response(self, answers):
+        df = pandas.DataFrame(answers)
+
+        response = OrderedDict()
+        response['correct_answer_rate'] = df['is_correct'].mean()
+
+        average_per_count = df.groupby('challenge_count').mean().to_dict().get('is_correct')
+        print(average_per_count)
+        count = 1
+        detail_list = list()
+        while True:
+            # チャレンジ回数ごとの平均点を計算する
+            correct_answer_rate = average_per_count.get(count, None)
+            if correct_answer_rate is None:
+                break
+            detail = dict()
+            detail['challenge_count'] = count
+            detail['correct_answer_rate'] = float(correct_answer_rate)
+            print(df[df['challenge_count'] == count])
+            print('df = {}'.format(df))
+            detail['group_id'] = df[df['challenge_count'] == count].at[count-1, 'group_id']
+
+            detail_list.append(detail)
+            count += 1
+
+        response['detail'] = detail_list
+
+        return response
 
     def post(self, request, user_id):
         """指定したユーザの回答を登録"""

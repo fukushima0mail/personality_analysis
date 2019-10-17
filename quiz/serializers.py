@@ -64,15 +64,11 @@ class RegisterUserValidateSerializer(serializers.ModelSerializer):
 
 
 
-class GetUserAnswerValidateSerializer(serializers.ModelSerializer):
+class GetUserAnswerValidateSerializer(serializers.Serializer):
     """指定したユーザの回答取得用シリアライザー"""
-#    group_id = serializers.UUIDField(required=False)
 
-    class Meta:
-        model = Answer
-        fields = (
-            'user_id'
-        )
+    group_id = serializers.UUIDField(required=False)
+    user_id = serializers.UUIDField(required=True)
 
 
 class RegisterUserAnswerValidateSerializer(serializers.ModelSerializer):
@@ -82,6 +78,7 @@ class RegisterUserAnswerValidateSerializer(serializers.ModelSerializer):
         fields = (
             'user_id',
             'question_id',
+            'group_id',
             'answer',
             'is_correct',
             'challenge_count'
