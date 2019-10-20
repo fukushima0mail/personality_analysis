@@ -10,6 +10,7 @@ from .serializers import GetUserAnswerValidateSerializer, RegisterUserAnswerVali
 from django.http import HttpResponse
 import json
 import pandas
+import random
 
 # class GroupViewSet(viewsets.ModelViewSet):
 #     """
@@ -61,7 +62,7 @@ class GroupView(APIView):
 
 
 class UserView(APIView):
-    """/user"""
+    """/users"""
 
     def get(self, request):
         """ユーザ取得"""
@@ -102,7 +103,7 @@ class SelectUserView(APIView):
 
 
 class SelectUserAnswerView(APIView):
-    """/users/{id}/answer"""
+    """/users/{id}/answers"""
 
     def get(self, request, user_id):
         """指定したユーザの回答を取得"""
@@ -114,7 +115,8 @@ class SelectUserAnswerView(APIView):
         data.is_valid(raise_exception=True)
 
         try:
-            answers = Answer.objects.filter(**data.validated_data, is_deleted=False).values(
+            answers = Answer.objects.filter(
+                **data.validated_data, is_deleted=False).order_by('challenge_count').values(
                 'group_id', 'is_correct', 'challenge_count')
         except Answer.DoesNotExist:
             raise NotFound()
@@ -129,7 +131,7 @@ class SelectUserAnswerView(APIView):
         response['correct_answer_rate'] = df['is_correct'].mean()
 
         average_per_count = df.groupby('challenge_count').mean().to_dict().get('is_correct')
-        print(average_per_count)
+        print('average_per_count={}'.format(average_per_count))
         count = 1
         detail_list = list()
         while True:
@@ -140,10 +142,10 @@ class SelectUserAnswerView(APIView):
             detail = dict()
             detail['challenge_count'] = count
             detail['correct_answer_rate'] = float(correct_answer_rate)
+            print("df[df['challenge_count'] == count]")
             print(df[df['challenge_count'] == count])
             print('df = {}'.format(df))
-            detail['group_id'] = df[df['challenge_count'] == count].at[count-1, 'group_id']
-
+            detail['group_id'] = list(df[df['challenge_count'] == count].get('group_id').to_dict().values()).pop()
             detail_list.append(detail)
             count += 1
 
@@ -154,7 +156,8 @@ class SelectUserAnswerView(APIView):
     def post(self, request, user_id):
         """指定したユーザの回答を登録"""
         data = json.loads(request.body)
-        data = RegisterUserAnswerValidateSerializer(data=dict(**data, user_id=user_id))
+        data = RegisterUserAnswerValidateSerializer(
+            data=dict(**data, question=data.get('question_id'), group=data.get('group_id'), user=user_id,))
         data.is_valid(raise_exception=True)
 
         try:
@@ -175,19 +178,21 @@ class QuestionView(APIView):
 
         data = GetQuestionValidateSerializer(data=dict(group_id=group_id, limit=limit))
         data.is_valid(raise_exception=True)
-        res = Question.objects.filter(group_id=data.validated_data['group_id']).values(
+        query = Question.objects.filter(group_id=data.validated_data['group_id']).values(
             'question_id', 'group_id', 'user_id', 'question_type', 'question',
             'shape_path', 'correct', 'choice_1', 'choice_2', 'choice_3', 'choice_4'
-        )[:limit]
-
-        if not res.exists():
+        )
+        if not query.exists():
             raise NotFound()
 
-        return Response(res)
+        response = random.sample(list(query), int(limit))
+        return Response(response)
 
     def post(self, request):
         """問題登録"""
         param = json.loads(request.body)
+        param['group'] = param.get('group_id')
+        param['user'] = param.get('user_id')
         data = RegisterQuestionValidateSerializer(data=param)
         data.is_valid(raise_exception=True)
 

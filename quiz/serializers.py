@@ -5,39 +5,6 @@ from quiz.models import Question, User, Group, Answer
 import uuid
 
 
-class GroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Group
-        fields = (
-            'group_id',
-            'group_name',
-            )
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = (
-            'user_id',
-            'user_name',
-            'mail_address',
-            'authority',
-            'correct_answer_rate'
-        )
-
-
-class QuestionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Question
-        fields = (
-            'question_cd',
-            'group',
-            'question',
-            'q_details',
-            'sort_cd',
-            )
-
-
 class AnswerSerializer(serializers.Serializer):
     answer_cd = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -55,6 +22,7 @@ class RegisterGroupValidateSerializer(serializers.ModelSerializer):
 
 
 class RegisterUserValidateSerializer(serializers.ModelSerializer):
+    """ユーザ登録用シリアライザー"""
     class Meta:
         model = User
         fields = (
@@ -63,10 +31,8 @@ class RegisterUserValidateSerializer(serializers.ModelSerializer):
         )
 
 
-
 class GetUserAnswerValidateSerializer(serializers.Serializer):
     """指定したユーザの回答取得用シリアライザー"""
-
     group_id = serializers.UUIDField(required=False)
     user_id = serializers.UUIDField(required=True)
 
@@ -76,9 +42,9 @@ class RegisterUserAnswerValidateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = (
-            'user_id',
-            'question_id',
-            'group_id',
+            'user',
+            'question',
+            'group',
             'answer',
             'is_correct',
             'challenge_count'
@@ -91,13 +57,12 @@ class GetQuestionValidateSerializer(serializers.Serializer):
     limit = serializers.IntegerField(required=False)
 
     def validate_group_id(self, value):
-        res = Question.objects.filter(group_id=value).values().exists()
-        if not res:
+        if not Question.objects.filter(group=value).values().exists():
             raise ValidationError(detail="group_id is not found. group_id={}".format(value))
         return value
 
     def validate_limit(self, value):
-        if value < Answer.objects.all().count():
+        if value > Question.objects.all().count():
             raise ValidationError(detail="limit is over. limit={}".format(value))
         return value
 
@@ -107,8 +72,8 @@ class RegisterQuestionValidateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = (
-            'group_id',
-            'user_id',
+            'group',
+            'user',
             'question_type',
             'question',
             'shape_path',

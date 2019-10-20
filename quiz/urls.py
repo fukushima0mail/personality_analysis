@@ -11,7 +11,7 @@ urlpatterns = [
     path('groups', GroupView.as_view()),
     path('users', UserView.as_view()),
     path('users/<str:user_id>', SelectUserView.as_view()),
-    path('users/<str:user_id>/answer', SelectUserAnswerView.as_view()),
+    path('users/<str:user_id>/answers', SelectUserAnswerView.as_view()),
     path('questions', QuestionView.as_view()),
     path('questions/<str:question_id>', SpecifiedQuestionView.as_view())
 ]
