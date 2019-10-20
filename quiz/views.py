@@ -12,34 +12,6 @@ import json
 import pandas
 import random
 
-# class GroupViewSet(viewsets.ModelViewSet):
-#     """
-#     グループビューセット
-#     """
-#
-#     queryset = Group.objects.all()
-#     serializer_class = GroupSerializer
-#
-#
-# class UserViewSet(viewsets.ModelViewSet):
-#     """
-#     ユーザビューセット
-#     """
-#
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#     filter_fields = ('group',)
-#
-#
-# class QuestionViewSet(viewsets.ModelViewSet):
-#     """
-#     質問ビューセット
-#     """
-#
-#     queryset = Question.objects.all()
-#     serializer_class = QuestionSerializer
-#     filter_fields = ('group',)
-
 
 class GroupView(APIView):
     """/group"""
@@ -102,11 +74,11 @@ class SelectUserView(APIView):
         return Response(res)
 
 
-class SelectUserAnswerView(APIView):
-    """/users/{id}/answers"""
+class SelectUserCurrentAnswerRateView(APIView):
+    """/users/{id}/current_answers_rate"""
 
     def get(self, request, user_id):
-        """指定したユーザの回答を取得"""
+        """指定したユーザの回答率を取得"""
         param = dict(user_id=user_id)
         if request.GET.get('group_id'):
             param['group_id'] = request.GET.get('group_id')
@@ -152,6 +124,10 @@ class SelectUserAnswerView(APIView):
         response['detail'] = detail_list
 
         return response
+
+
+class SelectUserAnswerView(APIView):
+    """/users/{id}/answers"""
 
     def post(self, request, user_id):
         """指定したユーザの回答を登録"""

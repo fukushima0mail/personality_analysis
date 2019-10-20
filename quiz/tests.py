@@ -4,7 +4,7 @@ from django.test import TestCase
 from rest_framework.test import APIRequestFactory
 
 from quiz.models import Group, User, Answer, Question
-from quiz.views import GroupView, UserView, SelectUserAnswerView, QuestionView
+from quiz.views import GroupView, UserView, SelectUserAnswerView, QuestionView, SelectUserCurrentAnswerRateView
 
 factory = APIRequestFactory()
 UUID_PATTERN = '[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}'
@@ -137,8 +137,8 @@ class TestSelectUser(TestCase):
         self.assertEqual(type(datetime.datetime.today()), type(record['update_date']))
 
 
-class TestSelectUserAnswer(TestCase):
-    """SelectUserAnswerテスト"""
+class TestSelectUserCurrentAnswerRate(TestCase):
+    """SelectUserCurrentAnswerRateテスト"""
 
     def setUp(self):
         """初期処理"""
@@ -216,10 +216,10 @@ class TestSelectUserAnswer(TestCase):
         user = User.objects.get(user_name='ユーザ1')
         group = Group.objects.get(group_name='名前2')
 
-        request = factory.get('/users/{}/answers'.format(user.user_id),
+        request = factory.get('/users/{}/current_answers_rate'.format(user.user_id),
                               data=dict(group_id=group.group_id))
 
-        get_answers = SelectUserAnswerView.as_view()
+        get_answers = SelectUserCurrentAnswerRateView.as_view()
         response = get_answers(request, user.user_id)
         data = response.data
 
@@ -233,6 +233,34 @@ class TestSelectUserAnswer(TestCase):
         self.assertEqual(2, detail[1].get('challenge_count'))
         self.assertEqual(0.5, detail[1].get('correct_answer_rate'))
         self.assertEqual(group.group_id, detail[1].get('group_id'))
+
+
+class TestSelectUserAnswer(TestCase):
+    """SelectUserAnswerテスト"""
+
+    def setUp(self):
+        """初期処理"""
+        User.objects.create(user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
+        User.objects.create(user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
+        User.objects.create(user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
+
+        Group.objects.create(group_name='名前1', is_deleted=False)
+        Group.objects.create(group_name='名前2', is_deleted=False)
+        Group.objects.create(group_name='名前3', is_deleted=True)
+
+        user = User.objects.get(user_name='ユーザ1')
+        group = Group.objects.get(group_name='名前2')
+        Question.objects.create(
+            group_id=group.group_id,
+            user_id=user.user_id,
+            question_type='select',
+            question='問題1',
+            correct=1,
+            choice_1='a',
+            choice_2='b',
+            choice_3='c',
+            choice_4='d'
+        )
 
     def test_post_user_success(self):
         """POST正常系"""
@@ -261,6 +289,7 @@ class TestSelectUserAnswer(TestCase):
         self.assertEqual(False, record.is_deleted)
         self.assertEqual(type(datetime.datetime.today()), type(record.create_date))
         self.assertEqual(type(datetime.datetime.today()), type(record.update_date))
+
 
 class TestQuestion(TestCase):
     """Questionテスト"""
