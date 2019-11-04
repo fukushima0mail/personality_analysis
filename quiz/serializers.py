@@ -1,5 +1,6 @@
 from django.db import models
 from rest_framework import serializers
+from rest_framework.compat import MinValueValidator, MaxValueValidator
 from rest_framework.exceptions import ValidationError
 from quiz.models import Question, User, Group, Answer
 import uuid
@@ -55,6 +56,7 @@ class GetQuestionValidateSerializer(serializers.Serializer):
     """問題取得用シリアライザー"""
     group_id = serializers.UUIDField(required=True)
     limit = serializers.IntegerField(required=False)
+    degree = serializers.IntegerField(required=True, validators=[MinValueValidator(1), MaxValueValidator(3)])
 
     def validate_group_id(self, value):
         if not Question.objects.filter(group=value).values().exists():
@@ -76,6 +78,7 @@ class RegisterQuestionValidateSerializer(serializers.ModelSerializer):
             'user',
             'question_type',
             'question',
+            'degree',
             'shape_path',
             'correct',
             'choice_1',

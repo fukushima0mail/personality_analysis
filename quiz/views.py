@@ -150,11 +150,14 @@ class QuestionView(APIView):
     def get(self, request):
         """問題取得"""
         group_id = request.GET.get('group_id')
+        degree = request.GET.get('degree')
         limit = request.GET.get('limit', 1)
 
-        data = GetQuestionValidateSerializer(data=dict(group_id=group_id, limit=limit))
+        data = GetQuestionValidateSerializer(data=dict(group_id=group_id, limit=limit, degree=degree))
         data.is_valid(raise_exception=True)
-        query = Question.objects.filter(group_id=data.validated_data['group_id']).values(
+        group_id = data.validated_data['group_id']
+        degree = data.validated_data['degree']
+        query = Question.objects.filter(group_id=group_id, degree=degree).values(
             'question_id', 'group_id', 'user_id', 'question_type', 'question',
             'shape_path', 'correct', 'choice_1', 'choice_2', 'choice_3', 'choice_4'
         )

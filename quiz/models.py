@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 import uuid
 
+from rest_framework.compat import MinValueValidator, MaxValueValidator
+
 
 class User(models.Model):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, null=False)
@@ -27,6 +29,7 @@ class Question(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question_type = models.CharField(max_length=6, choices=(('input', 'input'), ('select', 'select')), default='select', null=False)
+    degree = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(3)], null=False)
     question = models.CharField(max_length=255, null=False)
     shape_path = models.URLField(null=True)
     correct = models.CharField(max_length=255, null=False)
