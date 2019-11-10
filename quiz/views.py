@@ -20,7 +20,7 @@ class GroupView(APIView):
         """グループ取得"""
         res = Group.objects.filter(is_deleted=False).values('group_id', 'group_name')
         if not res.exists():
-            raise NotFound()
+            raise NotFound(detail="The target record is not found.")
 
         return Response(res)
 
@@ -41,7 +41,7 @@ class UserView(APIView):
         res = User.objects.filter(is_deleted=False).values(
             'user_id', 'user_name', 'mail_address', 'authority', 'correct_answer_rate')
         if not res.exists():
-            raise NotFound()
+            raise NotFound(detail="The target record is not found.")
 
         return Response(res)
 
@@ -63,7 +63,7 @@ class SelectUserView(APIView):
         try:
             val = User.objects.get(user_id=user_id, is_deleted=False)
         except User.DoesNotExist:
-            raise NotFound()
+            raise NotFound(detail="The target record is not found.")
 
         res = dict()
         res['user_id'] = val.user_id
@@ -91,7 +91,7 @@ class SelectUserCurrentAnswerRateView(APIView):
                 **data.validated_data, is_deleted=False).order_by('challenge_count').values(
                 'group_id', 'is_correct', 'challenge_count')
         except Answer.DoesNotExist:
-            raise NotFound()
+            raise NotFound(detail="The target record is not found.")
 
         res = self._Make_response(answers)
         return Response(res)
@@ -162,7 +162,7 @@ class QuestionView(APIView):
             'shape_path', 'correct', 'choice_1', 'choice_2', 'choice_3', 'choice_4'
         )
         if not query.exists():
-            raise NotFound()
+            raise NotFound(detail="The target record is not found.")
 
         response = random.sample(list(query), int(limit))
         return Response(response)
