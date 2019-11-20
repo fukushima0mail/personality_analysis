@@ -157,7 +157,7 @@ class QuestionView(APIView):
         data.is_valid(raise_exception=True)
         group_id = data.validated_data['group_id']
         degree = data.validated_data['degree']
-        query = Question.objects.filter(group_id=group_id, degree=degree).values(
+        query = Question.objects.filter(group_id=group_id, degree=degree, is_deleted=0).values(
             'question_id', 'group_id', 'user_id', 'question_type', 'question',
             'shape_path', 'correct', 'choice_1', 'choice_2', 'choice_3', 'choice_4'
         )
