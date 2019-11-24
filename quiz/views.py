@@ -130,18 +130,30 @@ class SelectUserAnswerView(APIView):
     """/users/{id}/answers"""
 
     def post(self, request, user_id):
-        """指定したユーザの回答を登録"""
+        """指定したユーザの回答を登録し、結果を返却する"""
         data = json.loads(request.body)
         data = RegisterUserAnswerValidateSerializer(
-            data=dict(**data, question=data.get('question_id'), group=data.get('group_id'), user=user_id,))
+            data=dict(question=data.get('question_id'),
+                      group=data.get('group_id'),
+                      user=user_id,
+                      answer=data.get('answer'),
+                      challenge_count=data.get('challenge_count')))
         data.is_valid(raise_exception=True)
 
         try:
-            Answer.objects.create(**data.validated_data)
+            question_id = data.validated_data.get('question').question_id
+            query = Question.objects.get(question_id=question_id)
         except Exception as e:
             raise APIException(e)
 
-        return HttpResponse(status=204)
+        res = dict()
+        res['result'] = True if query.correct == data.validated_data.get('answer') else False
+        try:
+            Answer.objects.create(**data.validated_data, is_correct=res['result'])
+        except Exception as e:
+            raise APIException(e)
+
+        return Response(res)
 
 
 class QuestionView(APIView):
@@ -151,7 +163,7 @@ class QuestionView(APIView):
         """問題取得"""
         group_id = request.GET.get('group_id')
         degree = request.GET.get('degree')
-        limit = request.GET.get('limit', 1)
+        limit = request.GET.get('limit', 5)
 
         data = GetQuestionValidateSerializer(data=dict(group_id=group_id, limit=limit, degree=degree))
         data.is_valid(raise_exception=True)
@@ -161,6 +173,8 @@ class QuestionView(APIView):
             'question_id', 'group_id', 'user_id', 'question_type', 'question',
             'shape_path', 'correct', 'choice_1', 'choice_2', 'choice_3', 'choice_4'
         )
+        if query.count() < limit:
+            limit = query.count()
         if not query.exists():
             raise NotFound(detail="The target record is not found.")
 
