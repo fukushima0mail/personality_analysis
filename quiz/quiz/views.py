@@ -173,7 +173,7 @@ class QuestionView(APIView):
             'question_id', 'group_id', 'user_id', 'question_type', 'question',
             'shape_path', 'correct', 'choice_1', 'choice_2', 'choice_3', 'choice_4'
         )
-        if query.count() < limit:
+        if query.count() < int(limit):
             limit = query.count()
         if not query.exists():
             raise NotFound(detail="The target record is not found.")

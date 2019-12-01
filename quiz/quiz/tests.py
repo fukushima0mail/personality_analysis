@@ -161,7 +161,8 @@ class TestSelectUserCurrentAnswerRate(TestCase):
             choice_1='a',
             choice_2='b',
             choice_3='c',
-            choice_4='d'
+            choice_4='d',
+            degree=1
         )
 
         question = Question.objects.get(question='問題1')
@@ -259,10 +260,11 @@ class TestSelectUserAnswer(TestCase):
             choice_1='a',
             choice_2='b',
             choice_3='c',
-            choice_4='d'
+            choice_4='d',
+            degree=1
         )
 
-    def test_post_user_success(self):
+    def test_post_user_answer_success(self):
         """POST正常系"""
         user = User.objects.get(user_name='ユーザ1')
         group = Group.objects.get(group_name='名前3')
@@ -278,7 +280,9 @@ class TestSelectUserAnswer(TestCase):
         request = factory.post('/users/{}/answers'.format(user.user_id), data=body, format='json')
         post_user = SelectUserAnswerView.as_view()
         response = post_user(request, user.user_id)
-        self.assertEqual(204, response.status_code)
+        self.assertEqual(200, response.status_code)
+        data = response.data
+        self.assertEqual(data.get('result'), True)
         record = Answer.objects.get(answer='1', group_id=group.group_id)
         self.assertTrue(re.match(UUID_PATTERN, str(record.answer_id)))
         self.assertEqual(user.user_id, record.user_id)
@@ -316,7 +320,8 @@ class TestQuestion(TestCase):
             choice_1='a',
             choice_2='b',
             choice_3='c',
-            choice_4='d'
+            choice_4='d',
+            degree=1
         )
         Question.objects.create(
             group_id=group1.group_id,
@@ -327,7 +332,9 @@ class TestQuestion(TestCase):
             choice_1='a',
             choice_2='b',
             choice_3='c',
-            choice_4='d'
+            choice_4='d',
+            degree=1
+
         )
         Question.objects.create(
             group_id=group1.group_id,
@@ -338,7 +345,8 @@ class TestQuestion(TestCase):
             choice_1='a',
             choice_2='b',
             choice_3='c',
-            choice_4='d'
+            choice_4='d',
+            degree=1
         )
         Question.objects.create(
             group_id=group1.group_id,
@@ -349,7 +357,8 @@ class TestQuestion(TestCase):
             choice_1='a',
             choice_2='b',
             choice_3='c',
-            choice_4='d'
+            choice_4='d',
+            degree=1
         )
         Question.objects.create(
             group_id=group1.group_id,
@@ -361,7 +370,8 @@ class TestQuestion(TestCase):
             choice_2='b',
             choice_3='c',
             choice_4='d',
-            is_deleted=True
+            is_deleted=True,
+            degree=1
         )
         Question.objects.create(
             group_id=group2.group_id,
@@ -372,7 +382,8 @@ class TestQuestion(TestCase):
             choice_1='a',
             choice_2='b',
             choice_3='c',
-            choice_4='d'
+            choice_4='d',
+            degree=1
         )
 
     def test_get_question_success(self):
@@ -423,7 +434,8 @@ class TestQuestion(TestCase):
             choice_1='a',
             choice_2='b',
             choice_3='c',
-            choice_4='d'
+            choice_4='d',
+            degree=1
         )
 
         request = factory.post('/questions', data=body, format='json')
