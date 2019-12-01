@@ -1,25 +1,23 @@
 version: '3.3'
 services:
   db:
-    build: ./docker/mysql
+    build: ./mysql
     image: mysql:5.7
     environment:
       MYSQL_DATABASE: quiz
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
-    ports:
-      - "3314:3306"
     volumes:
-      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
-      - ./docker/mysql/conf.d:/etc/mysql/conf.d
-      - ./log/mysql:/var/log/mysql
+      - ./mysql/config/conf.d:/etc/mysql/conf.d
+      - ./volume/mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./volume/mysql/log:/var/log/mysql
   quiz:
-    build: .
+    build: ./quiz
     depends_on:
       - db
     volumes:
-      - .:/code
+      - ./quiz:/code
     tty: true
     ports:
       - "8000:8000"

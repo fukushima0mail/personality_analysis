@@ -378,7 +378,7 @@ class TestQuestion(TestCase):
     def test_get_question_success(self):
         """GETの正常系"""
         group = Group.objects.get(group_name='名前1')
-        request = factory.get('/questions', data=dict(group_id=group.group_id, limit=3))
+        request = factory.get('/questions', data=dict(group_id=group.group_id, degree=1, limit=3))
         get_questions = QuestionView.as_view()
         response = get_questions(request)
         data = response.data

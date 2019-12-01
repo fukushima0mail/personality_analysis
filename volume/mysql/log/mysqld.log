@@ -1,0 +1,1050 @@
+mysqld, Version: 5.7.28-log (MySQL Community Server (GPL)). started with:
+Tcp port: 0  Unix socket: /var/run/mysqld/mysqld.sock
+Time                 Id Command    Argument
+2019-12-01T11:45:44.074596Z	    2 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:45:44.078904Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:44.079187Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:44.079893Z	    2 Query	SELECT @@SQL_AUTO_IS_NULL
+2019-12-01T11:45:44.081965Z	    2 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:45:44.082213Z	    2 Query	SELECT @@sql_mode
+2019-12-01T11:45:44.393630Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:44.394395Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:44.396600Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:44.397162Z	    2 Query	CREATE TABLE `django_migrations` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL)
+2019-12-01T11:45:44.465387Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'
+2019-12-01T11:45:44.467237Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'
+2019-12-01T11:45:44.467724Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'
+2019-12-01T11:45:44.468175Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'
+2019-12-01T11:45:44.470794Z	    2 Query	CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL)
+2019-12-01T11:45:44.535742Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'
+2019-12-01T11:45:44.536295Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'
+2019-12-01T11:45:44.536688Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'
+2019-12-01T11:45:44.537069Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'
+2019-12-01T11:45:44.538496Z	    2 Query	ALTER TABLE `django_content_type` ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (`app_label`, `model`)
+2019-12-01T11:45:44.590718Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:44.591480Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:44.593236Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0001_initial', '2019-12-01 11:45:44.591288')
+2019-12-01T11:45:44.593760Z	    2 Query	COMMIT
+2019-12-01T11:45:44.602003Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:44.604623Z	    2 Query	CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL)
+2019-12-01T11:45:44.667832Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'
+2019-12-01T11:45:44.668389Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'
+2019-12-01T11:45:44.668749Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'
+2019-12-01T11:45:44.669128Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'
+2019-12-01T11:45:44.671996Z	    2 Query	CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE)
+2019-12-01T11:45:44.736931Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group'
+2019-12-01T11:45:44.737463Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group'
+2019-12-01T11:45:44.738125Z	    2 Query	CREATE TABLE `auth_group_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL)
+2019-12-01T11:45:44.804621Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'
+2019-12-01T11:45:44.805196Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'
+2019-12-01T11:45:44.805582Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'
+2019-12-01T11:45:44.827227Z	    2 Query	CREATE TABLE `auth_user` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NOT NULL, `is_superuser` bool NOT NULL, `username` varchar(30) NOT NULL UNIQUE, `first_name` varchar(30) NOT NULL, `last_name` varchar(30) NOT NULL, `email` varchar(75) NOT NULL, `is_staff` bool NOT NULL, `is_active` bool NOT NULL, `date_joined` datetime(6) NOT NULL)
+2019-12-01T11:45:44.884966Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.885513Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.885910Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.886325Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.886723Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.887119Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.887527Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.887939Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.888349Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.888744Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.889138Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:45:44.889855Z	    2 Query	CREATE TABLE `auth_user_groups` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `group_id` integer NOT NULL)
+2019-12-01T11:45:44.955329Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_groups'
+2019-12-01T11:45:44.955914Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_groups'
+2019-12-01T11:45:44.956342Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_groups'
+2019-12-01T11:45:44.957078Z	    2 Query	CREATE TABLE `auth_user_user_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `permission_id` integer NOT NULL)
+2019-12-01T11:45:45.014384Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_user_permissions'
+2019-12-01T11:45:45.014988Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_user_permissions'
+2019-12-01T11:45:45.015423Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_user_permissions'
+2019-12-01T11:45:45.015895Z	    2 Query	ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+2019-12-01T11:45:45.155426Z	    2 Query	ALTER TABLE `auth_permission` ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (`content_type_id`, `codename`)
+2019-12-01T11:45:45.238489Z	    2 Query	ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+2019-12-01T11:45:45.428919Z	    2 Query	ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+2019-12-01T11:45:45.617909Z	    2 Query	ALTER TABLE `auth_group_permissions` ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (`group_id`, `permission_id`)
+2019-12-01T11:45:45.685778Z	    2 Query	ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+2019-12-01T11:45:45.833585Z	    2 Query	ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+2019-12-01T11:45:46.021058Z	    2 Query	ALTER TABLE `auth_user_groups` ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (`user_id`, `group_id`)
+2019-12-01T11:45:46.105775Z	    2 Query	ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+2019-12-01T11:45:46.266369Z	    2 Query	ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+2019-12-01T11:45:46.425709Z	    2 Query	ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (`user_id`, `permission_id`)
+2019-12-01T11:45:46.508644Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:46.510258Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:46.511134Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0001_initial', '2019-12-01 11:45:46.509902')
+2019-12-01T11:45:46.511691Z	    2 Query	COMMIT
+2019-12-01T11:45:46.531037Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:46.540108Z	    2 Query	CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL, `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` integer NOT NULL)
+2019-12-01T11:45:46.609512Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:45:46.612280Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:45:46.614458Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:45:46.616483Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:45:46.618478Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:45:46.620491Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:45:46.622504Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:45:46.624575Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:45:46.626834Z	    2 Query	ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+2019-12-01T11:45:46.794488Z	    2 Query	ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+2019-12-01T11:45:46.964263Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:46.964949Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:46.965329Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0001_initial', '2019-12-01 11:45:46.964805')
+2019-12-01T11:45:46.965596Z	    2 Query	COMMIT
+2019-12-01T11:45:46.974235Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:46.980279Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:46.981064Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:46.981454Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0002_logentry_remove_auto_add', '2019-12-01 11:45:46.980896')
+2019-12-01T11:45:46.981981Z	    2 Query	COMMIT
+2019-12-01T11:45:46.991772Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:46.997380Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:46.998054Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:46.998432Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0003_logentry_add_action_flag_choices', '2019-12-01 11:45:46.997942')
+2019-12-01T11:45:46.998724Z	    2 Query	COMMIT
+2019-12-01T11:45:47.006760Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.011866Z	    2 Query	ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL
+2019-12-01T11:45:47.118645Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.123212Z	    2 Query	COMMIT
+2019-12-01T11:45:47.123441Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.125831Z	    2 Query	ALTER TABLE `django_content_type` DROP COLUMN `name`
+2019-12-01T11:45:47.257153Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:47.257820Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.258179Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0002_remove_content_type_name', '2019-12-01 11:45:47.257675')
+2019-12-01T11:45:47.258453Z	    2 Query	COMMIT
+2019-12-01T11:45:47.269783Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.272725Z	    2 Query	ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL
+2019-12-01T11:45:47.289703Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:47.290330Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.290664Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0002_alter_permission_name_max_length', '2019-12-01 11:45:47.290192')
+2019-12-01T11:45:47.290937Z	    2 Query	COMMIT
+2019-12-01T11:45:47.296410Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.302640Z	    2 Query	ALTER TABLE `auth_user` MODIFY `email` varchar(254) NOT NULL
+2019-12-01T11:45:47.313935Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:47.314585Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.314941Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0003_alter_user_email_max_length', '2019-12-01 11:45:47.314450')
+2019-12-01T11:45:47.315203Z	    2 Query	COMMIT
+2019-12-01T11:45:47.365744Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.385790Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:47.387227Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.387985Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0004_alter_user_username_opts', '2019-12-01 11:45:47.386950')
+2019-12-01T11:45:47.388590Z	    2 Query	COMMIT
+2019-12-01T11:45:47.395000Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.402798Z	    2 Query	ALTER TABLE `auth_user` MODIFY `last_login` datetime(6) NULL
+2019-12-01T11:45:47.492136Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:47.492950Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.493314Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0005_alter_user_last_login_null', '2019-12-01 11:45:47.492801')
+2019-12-01T11:45:47.493699Z	    2 Query	COMMIT
+2019-12-01T11:45:47.496646Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.496975Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:47.497571Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.497926Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0006_require_contenttypes_0002', '2019-12-01 11:45:47.497465')
+2019-12-01T11:45:47.498224Z	    2 Query	COMMIT
+2019-12-01T11:45:47.503857Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.508981Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:47.509642Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.509994Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0007_alter_validators_add_error_messages', '2019-12-01 11:45:47.509500')
+2019-12-01T11:45:47.510277Z	    2 Query	COMMIT
+2019-12-01T11:45:47.516054Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.521392Z	    2 Query	ALTER TABLE `auth_user` MODIFY `username` varchar(150) NOT NULL
+2019-12-01T11:45:47.535408Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:47.536056Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.536397Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0008_alter_user_username_max_length', '2019-12-01 11:45:47.535916')
+2019-12-01T11:45:47.536660Z	    2 Query	COMMIT
+2019-12-01T11:45:47.542609Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.547763Z	    2 Query	ALTER TABLE `auth_user` MODIFY `last_name` varchar(150) NOT NULL
+2019-12-01T11:45:47.559406Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:47.560026Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:47.560351Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0009_alter_user_last_name_max_length', '2019-12-01 11:45:47.559915')
+2019-12-01T11:45:47.560606Z	    2 Query	COMMIT
+2019-12-01T11:45:47.565604Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:47.567227Z	    2 Query	CREATE TABLE `quiz_answer` (`answer_id` char(32) NOT NULL PRIMARY KEY, `answer` varchar(20) NOT NULL, `is_correct` bool NOT NULL, `challenge_count` integer NOT NULL, `is_deleted` bool NOT NULL, `create_date` datetime(6) NOT NULL, `update_date` datetime(6) NOT NULL)
+2019-12-01T11:45:47.630504Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:47.633569Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:47.635713Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:47.637788Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:47.639721Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:47.641206Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:47.642632Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:47.647436Z	    2 Query	CREATE TABLE `quiz_group` (`group_id` char(32) NOT NULL PRIMARY KEY, `group_name` varchar(30) NOT NULL UNIQUE, `is_deleted` bool NOT NULL, `create_date` datetime(6) NOT NULL, `update_date` datetime(6) NOT NULL)
+2019-12-01T11:45:47.735414Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:45:47.737048Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:45:47.738597Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:45:47.739801Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:45:47.740846Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:45:47.748682Z	    2 Query	CREATE TABLE `quiz_question` (`question_id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `question_type` varchar(6) NOT NULL, `question` varchar(255) NOT NULL, `shape_path` varchar(200) NULL, `correct` varchar(255) NOT NULL, `choice_1` varchar(255) NULL, `choice_2` varchar(255) NULL, `choice_3` varchar(255) NULL, `choice_4` varchar(255) NULL, `is_deleted` bool NOT NULL, `create_date` datetime(6) NOT NULL, `update_date` datetime(6) NOT NULL, `group_id_id` char(32) NOT NULL)
+2019-12-01T11:45:47.810019Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.810554Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.811022Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.811422Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.811886Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.812284Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.812693Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.813089Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.813482Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.813986Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.814437Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.814875Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.815308Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:47.817295Z	    2 Query	CREATE TABLE `quiz_user` (`user_id` char(32) NOT NULL PRIMARY KEY, `user_name` varchar(30) NOT NULL UNIQUE, `mail_address` varchar(100) NOT NULL UNIQUE, `authority` bool NOT NULL, `correct_answer_rate` double precision NULL, `is_deleted` bool NOT NULL, `create_date` datetime(6) NOT NULL, `update_date` datetime(6) NOT NULL)
+2019-12-01T11:45:47.886427Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:45:47.886985Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:45:47.887397Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:45:47.887818Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:45:47.888283Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:45:47.888691Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:45:47.889106Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:45:47.889509Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:45:47.892780Z	    2 Query	ALTER TABLE `quiz_question` ADD COLUMN `user_id_id` char(32) NOT NULL
+2019-12-01T11:45:48.000811Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:48.004893Z	    2 Query	ALTER TABLE `quiz_answer` ADD COLUMN `group_id_id` char(32) NOT NULL
+2019-12-01T11:45:48.106572Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:48.110906Z	    2 Query	ALTER TABLE `quiz_answer` ADD COLUMN `question_id_id` integer NOT NULL
+2019-12-01T11:45:48.206101Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:48.211801Z	    2 Query	ALTER TABLE `quiz_answer` ADD COLUMN `user_id_id` char(32) NOT NULL
+2019-12-01T11:45:48.304630Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:45:48.305518Z	    2 Query	ALTER TABLE `quiz_question` ADD CONSTRAINT `quiz_question_group_id_id_18bb7e59_fk_quiz_group_group_id` FOREIGN KEY (`group_id_id`) REFERENCES `quiz_group` (`group_id`)
+2019-12-01T11:45:48.457559Z	    2 Query	ALTER TABLE `quiz_question` ADD CONSTRAINT `quiz_question_user_id_id_d7148297_fk_quiz_user_user_id` FOREIGN KEY (`user_id_id`) REFERENCES `quiz_user` (`user_id`)
+2019-12-01T11:45:48.618263Z	    2 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_group_id_id_a354aad5_fk_quiz_group_group_id` FOREIGN KEY (`group_id_id`) REFERENCES `quiz_group` (`group_id`)
+2019-12-01T11:45:48.776199Z	    2 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_question_id_id_514013cb_fk_quiz_question_question_id` FOREIGN KEY (`question_id_id`) REFERENCES `quiz_question` (`question_id`)
+2019-12-01T11:45:48.929053Z	    2 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_user_id_id_596808a9_fk_quiz_user_user_id` FOREIGN KEY (`user_id_id`) REFERENCES `quiz_user` (`user_id`)
+2019-12-01T11:45:49.117446Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:49.119226Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:49.119901Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('quiz', '0001_initial', '2019-12-01 11:45:49.118976')
+2019-12-01T11:45:49.120367Z	    2 Query	COMMIT
+2019-12-01T11:45:49.130547Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:49.140251Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:49.141710Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:49.142358Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('quiz', '0002_auto_20191019_2051', '2019-12-01 11:45:49.141470')
+2019-12-01T11:45:49.142953Z	    2 Query	COMMIT
+2019-12-01T11:45:49.152036Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:49.158625Z	    2 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_answer'
+2019-12-01T11:45:49.161185Z	    2 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_answer'
+2019-12-01T11:45:49.161690Z	    2 Query	SHOW INDEX FROM `quiz_answer`
+2019-12-01T11:45:49.162613Z	    2 Query	ALTER TABLE `quiz_answer` DROP FOREIGN KEY `quiz_answer_group_id_id_a354aad5_fk_quiz_group_group_id`
+2019-12-01T11:45:49.180011Z	    2 Query	ALTER TABLE `quiz_answer` CHANGE `group_id_id` `group_id` char(32) NOT NULL
+2019-12-01T11:45:49.196281Z	    2 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_group_id_19771dee_fk_quiz_group_group_id` FOREIGN KEY (`group_id`) REFERENCES `quiz_group` (`group_id`)
+2019-12-01T11:45:49.389667Z	    2 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_answer'
+2019-12-01T11:45:49.390407Z	    2 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_answer'
+2019-12-01T11:45:49.390803Z	    2 Query	SHOW INDEX FROM `quiz_answer`
+2019-12-01T11:45:49.391499Z	    2 Query	ALTER TABLE `quiz_answer` DROP FOREIGN KEY `quiz_answer_question_id_id_514013cb_fk_quiz_question_question_id`
+2019-12-01T11:45:49.409045Z	    2 Query	ALTER TABLE `quiz_answer` CHANGE `question_id_id` `question_id` integer NOT NULL
+2019-12-01T11:45:49.426440Z	    2 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_question_id_26edde8a_fk_quiz_question_question_id` FOREIGN KEY (`question_id`) REFERENCES `quiz_question` (`question_id`)
+2019-12-01T11:45:49.583877Z	    2 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_answer'
+2019-12-01T11:45:49.584639Z	    2 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_answer'
+2019-12-01T11:45:49.585001Z	    2 Query	SHOW INDEX FROM `quiz_answer`
+2019-12-01T11:45:49.585705Z	    2 Query	ALTER TABLE `quiz_answer` DROP FOREIGN KEY `quiz_answer_user_id_id_596808a9_fk_quiz_user_user_id`
+2019-12-01T11:45:49.604923Z	    2 Query	ALTER TABLE `quiz_answer` CHANGE `user_id_id` `user_id` char(32) NOT NULL
+2019-12-01T11:45:49.629784Z	    2 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_user_id_42c7c6cb_fk_quiz_user_user_id` FOREIGN KEY (`user_id`) REFERENCES `quiz_user` (`user_id`)
+2019-12-01T11:45:49.790554Z	    2 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_question'
+2019-12-01T11:45:49.791256Z	    2 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_question'
+2019-12-01T11:45:49.791626Z	    2 Query	SHOW INDEX FROM `quiz_question`
+2019-12-01T11:45:49.792269Z	    2 Query	ALTER TABLE `quiz_question` DROP FOREIGN KEY `quiz_question_group_id_id_18bb7e59_fk_quiz_group_group_id`
+2019-12-01T11:45:49.810714Z	    2 Query	ALTER TABLE `quiz_question` CHANGE `group_id_id` `group_id` char(32) NOT NULL
+2019-12-01T11:45:49.828306Z	    2 Query	ALTER TABLE `quiz_question` ADD CONSTRAINT `quiz_question_group_id_b1962eae_fk_quiz_group_group_id` FOREIGN KEY (`group_id`) REFERENCES `quiz_group` (`group_id`)
+2019-12-01T11:45:50.002091Z	    2 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_question'
+2019-12-01T11:45:50.003431Z	    2 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_question'
+2019-12-01T11:45:50.004065Z	    2 Query	SHOW INDEX FROM `quiz_question`
+2019-12-01T11:45:50.005103Z	    2 Query	ALTER TABLE `quiz_question` DROP FOREIGN KEY `quiz_question_user_id_id_d7148297_fk_quiz_user_user_id`
+2019-12-01T11:45:50.024810Z	    2 Query	ALTER TABLE `quiz_question` CHANGE `user_id_id` `user_id` char(32) NOT NULL
+2019-12-01T11:45:50.045051Z	    2 Query	ALTER TABLE `quiz_question` ADD CONSTRAINT `quiz_question_user_id_c015f9f3_fk_quiz_user_user_id` FOREIGN KEY (`user_id`) REFERENCES `quiz_user` (`user_id`)
+2019-12-01T11:45:50.205139Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:50.205878Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.206284Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('quiz', '0003_auto_20191020_0316', '2019-12-01 11:45:50.205766')
+2019-12-01T11:45:50.206675Z	    2 Query	COMMIT
+2019-12-01T11:45:50.214671Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.219667Z	    2 Query	ALTER TABLE `quiz_question` ADD COLUMN `degree` integer DEFAULT 1 NOT NULL
+2019-12-01T11:45:50.314785Z	    2 Query	ALTER TABLE `quiz_question` ALTER COLUMN `degree` DROP DEFAULT
+2019-12-01T11:45:50.323074Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:45:50.323578Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:50.324241Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.324631Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('quiz', '0004_question_degree', '2019-12-01 11:45:50.324103')
+2019-12-01T11:45:50.324911Z	    2 Query	COMMIT
+2019-12-01T11:45:50.332738Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.334720Z	    2 Query	CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL)
+2019-12-01T11:45:50.438764Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'
+2019-12-01T11:45:50.441243Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'
+2019-12-01T11:45:50.443298Z	    2 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'
+2019-12-01T11:45:50.445813Z	    2 Query	CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`)
+2019-12-01T11:45:50.488730Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:50.489479Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.489851Z	    2 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('sessions', '0001_initial', '2019-12-01 11:45:50.489335')
+2019-12-01T11:45:50.490122Z	    2 Query	COMMIT
+2019-12-01T11:45:50.498849Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.499216Z	    2 Query	SHOW FULL TABLES
+2019-12-01T11:45:50.500164Z	    2 Query	SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`
+2019-12-01T11:45:50.508430Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'admin' AND `django_content_type`.`model` = 'logentry')
+2019-12-01T11:45:50.509806Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'admin' AND `django_content_type`.`model` = 'logentry')
+2019-12-01T11:45:50.510182Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.510552Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('admin', 'logentry')
+2019-12-01T11:45:50.510870Z	    2 Query	COMMIT
+2019-12-01T11:45:50.518753Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.520212Z	    2 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (1) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:45:50.521693Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.522111Z	    2 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add log entry', 1, 'add_logentry'), ('Can change log entry', 1, 'change_logentry'), ('Can delete log entry', 1, 'delete_logentry'), ('Can view log entry', 1, 'view_logentry')
+2019-12-01T11:45:50.522400Z	    2 Query	COMMIT
+2019-12-01T11:45:50.530507Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.531141Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'admin'
+2019-12-01T11:45:50.532046Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'permission')
+2019-12-01T11:45:50.532750Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'permission')
+2019-12-01T11:45:50.533121Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.533465Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'permission')
+2019-12-01T11:45:50.534223Z	    2 Query	COMMIT
+2019-12-01T11:45:50.549544Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.550307Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'group')
+2019-12-01T11:45:50.551071Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'group')
+2019-12-01T11:45:50.551459Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.551818Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'group')
+2019-12-01T11:45:50.552104Z	    2 Query	COMMIT
+2019-12-01T11:45:50.560310Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.561046Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'user')
+2019-12-01T11:45:50.561769Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'user')
+2019-12-01T11:45:50.562093Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.562382Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'user')
+2019-12-01T11:45:50.562641Z	    2 Query	COMMIT
+2019-12-01T11:45:50.570497Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.571628Z	    2 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (2, 3, 4) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:45:50.572355Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.572940Z	    2 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add permission', 2, 'add_permission'), ('Can change permission', 2, 'change_permission'), ('Can delete permission', 2, 'delete_permission'), ('Can view permission', 2, 'view_permission'), ('Can add group', 3, 'add_group'), ('Can change group', 3, 'change_group'), ('Can delete group', 3, 'delete_group'), ('Can view group', 3, 'view_group'), ('Can add user', 4, 'add_user'), ('Can change user', 4, 'change_user'), ('Can delete user', 4, 'delete_user'), ('Can view user', 4, 'view_user')
+2019-12-01T11:45:50.573287Z	    2 Query	COMMIT
+2019-12-01T11:45:50.581181Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.582029Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'auth'
+2019-12-01T11:45:50.583062Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'contenttypes' AND `django_content_type`.`model` = 'contenttype')
+2019-12-01T11:45:50.583729Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'contenttypes' AND `django_content_type`.`model` = 'contenttype')
+2019-12-01T11:45:50.584101Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.584406Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('contenttypes', 'contenttype')
+2019-12-01T11:45:50.584639Z	    2 Query	COMMIT
+2019-12-01T11:45:50.593061Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.594109Z	    2 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (5) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:45:50.594710Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.595249Z	    2 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add content type', 5, 'add_contenttype'), ('Can change content type', 5, 'change_contenttype'), ('Can delete content type', 5, 'delete_contenttype'), ('Can view content type', 5, 'view_contenttype')
+2019-12-01T11:45:50.595562Z	    2 Query	COMMIT
+2019-12-01T11:45:50.603001Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.603595Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'contenttypes'
+2019-12-01T11:45:50.604473Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'sessions' AND `django_content_type`.`model` = 'session')
+2019-12-01T11:45:50.605166Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'sessions' AND `django_content_type`.`model` = 'session')
+2019-12-01T11:45:50.605490Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.605742Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('sessions', 'session')
+2019-12-01T11:45:50.605996Z	    2 Query	COMMIT
+2019-12-01T11:45:50.613746Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.614795Z	    2 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (6) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:45:50.615439Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.615847Z	    2 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add session', 6, 'add_session'), ('Can change session', 6, 'change_session'), ('Can delete session', 6, 'delete_session'), ('Can view session', 6, 'view_session')
+2019-12-01T11:45:50.616140Z	    2 Query	COMMIT
+2019-12-01T11:45:50.624475Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.625069Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'sessions'
+2019-12-01T11:45:50.625956Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'answer')
+2019-12-01T11:45:50.626614Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'answer')
+2019-12-01T11:45:50.626999Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.627345Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('quiz', 'answer')
+2019-12-01T11:45:50.627634Z	    2 Query	COMMIT
+2019-12-01T11:45:50.636283Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.636959Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'group')
+2019-12-01T11:45:50.637673Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'group')
+2019-12-01T11:45:50.638074Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.638409Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('quiz', 'group')
+2019-12-01T11:45:50.638688Z	    2 Query	COMMIT
+2019-12-01T11:45:50.646622Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.647244Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'question')
+2019-12-01T11:45:50.647923Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'question')
+2019-12-01T11:45:50.648287Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.648604Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('quiz', 'question')
+2019-12-01T11:45:50.648869Z	    2 Query	COMMIT
+2019-12-01T11:45:50.657267Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.657903Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'user')
+2019-12-01T11:45:50.658654Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'user')
+2019-12-01T11:45:50.659029Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.659388Z	    2 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('quiz', 'user')
+2019-12-01T11:45:50.659675Z	    2 Query	COMMIT
+2019-12-01T11:45:50.668559Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.669639Z	    2 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (8, 9, 10, 7) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:45:50.670421Z	    2 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:50.671081Z	    2 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add answer', 7, 'add_answer'), ('Can change answer', 7, 'change_answer'), ('Can delete answer', 7, 'delete_answer'), ('Can view answer', 7, 'view_answer'), ('Can add group', 8, 'add_group'), ('Can change group', 8, 'change_group'), ('Can delete group', 8, 'delete_group'), ('Can view group', 8, 'view_group'), ('Can add question', 9, 'add_question'), ('Can change question', 9, 'change_question'), ('Can delete question', 9, 'delete_question'), ('Can view question', 9, 'view_question'), ('Can add user', 10, 'add_user'), ('Can change user', 10, 'change_user'), ('Can delete user', 10, 'delete_user'), ('Can view user', 10, 'view_user')
+2019-12-01T11:45:50.671426Z	    2 Query	COMMIT
+2019-12-01T11:45:50.680114Z	    2 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:50.680682Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'quiz'
+2019-12-01T11:45:50.682097Z	    2 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'django_filters'
+2019-12-01T11:45:50.682517Z	    2 Quit	
+2019-12-01T11:45:50.781844Z	    3 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:45:50.790959Z	    3 Query	delete from quiz_user
+2019-12-01T11:45:50.791268Z	    3 Quit	
+2019-12-01T11:45:50.795428Z	    4 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:45:50.797547Z	    4 Query	insert into quiz_user
+(user_id,user_name,mail_address,authority,is_deleted,create_date,update_date)
+values
+("78cca1a7720b4298b5fed84e0b813173","テストユーザ1","aaa@xxx.jp","0","0","2019/11/23","2019/11/23")
+2019-12-01T11:45:50.797838Z	    4 Quit	
+2019-12-01T11:45:51.566822Z	    5 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:45:51.567021Z	    5 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:45:51.567188Z	    5 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:45:51.567366Z	    5 Query	SELECT @@SQL_AUTO_IS_NULL
+2019-12-01T11:45:51.567671Z	    5 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:45:51.567924Z	    5 Query	SHOW FULL TABLES
+2019-12-01T11:45:51.569688Z	    5 Query	SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`
+2019-12-01T11:47:14.734470Z	    6 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:47:14.734669Z	    6 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:47:14.734848Z	    6 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:47:14.735108Z	    6 Query	SELECT @@SQL_AUTO_IS_NULL
+2019-12-01T11:47:14.735552Z	    6 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:47:14.735873Z	    6 Query	SELECT (1) AS `a` FROM `quiz_group` WHERE `quiz_group`.`is_deleted` = 0  LIMIT 1
+2019-12-01T11:47:14.737444Z	    6 Quit	
+mysqld, Version: 5.7.28-log (MySQL Community Server (GPL)). started with:
+Tcp port: 0  Unix socket: /var/run/mysqld/mysqld.sock
+Time                 Id Command    Argument
+2019-12-01T11:47:48.388649Z	    2 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:47:48.391405Z	    2 Query	delete from quiz_user
+2019-12-01T11:47:48.394745Z	    2 Quit	
+2019-12-01T11:47:48.399228Z	    3 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:47:48.403435Z	    3 Query	insert into quiz_user
+(user_id,user_name,mail_address,authority,is_deleted,create_date,update_date)
+values
+("78cca1a7720b4298b5fed84e0b813173","テストユーザ1","aaa@xxx.jp","0","0","2019/11/23","2019/11/23")
+2019-12-01T11:47:48.404129Z	    3 Quit	
+2019-12-01T11:48:24.631338Z	    4 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:48:24.634157Z	    4 Query	delete from quiz_user
+2019-12-01T11:48:24.634692Z	    4 Quit	
+2019-12-01T11:48:24.639607Z	    5 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:48:24.642505Z	    5 Query	insert into quiz_user
+(user_id,user_name,mail_address,authority,is_deleted,create_date,update_date)
+values
+("78cca1a7720b4298b5fed84e0b813173","テストユーザ1","aaa@xxx.jp","0","0","2019/11/23","2019/11/23")
+2019-12-01T11:48:24.643405Z	    5 Quit	
+2019-12-01T11:50:48.990526Z	    6 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:50:48.993130Z	    6 Query	delete from quiz_user
+2019-12-01T11:50:48.993608Z	    6 Quit	
+2019-12-01T11:50:48.997544Z	    7 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:50:49.000230Z	    7 Query	insert into quiz_user
+(user_id,user_name,mail_address,authority,is_deleted,create_date,update_date)
+values
+("78cca1a7720b4298b5fed84e0b813173","テストユーザ1","aaa@xxx.jp","0","0","2019/11/23","2019/11/23")
+2019-12-01T11:50:49.000791Z	    7 Quit	
+2019-12-01T11:52:48.435125Z	    8 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:52:48.438122Z	    8 Query	delete from quiz_user
+2019-12-01T11:52:48.438755Z	    8 Quit	
+2019-12-01T11:52:48.443181Z	    9 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T11:52:48.446491Z	    9 Query	insert into quiz_user
+(user_id,user_name,mail_address,authority,is_deleted,create_date,update_date)
+values
+("78cca1a7720b4298b5fed84e0b813173","テストユーザ1","aaa@xxx.jp","0","0","2019/11/23","2019/11/23")
+2019-12-01T11:52:48.447366Z	    9 Quit	
+2019-12-01T11:57:39.289228Z	   10 Connect	root@personality_analysis_quiz_1.personality_analysis_default on  using TCP/IP
+2019-12-01T11:57:39.290480Z	   10 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:39.290998Z	   10 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:39.291517Z	   10 Query	SELECT @@SQL_AUTO_IS_NULL
+2019-12-01T11:57:39.292200Z	   10 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:57:39.292746Z	   10 Query	CREATE DATABASE `test_quiz`
+2019-12-01T11:57:39.335523Z	   11 Connect	root@personality_analysis_quiz_1.personality_analysis_default on test_quiz using TCP/IP
+2019-12-01T11:57:39.336143Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:39.348920Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:39.352296Z	   11 Query	SELECT @@SQL_AUTO_IS_NULL
+2019-12-01T11:57:39.356480Z	   11 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:57:39.358574Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:39.363440Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:39.369845Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:39.372628Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:39.376013Z	   11 Query	CREATE TABLE `django_migrations` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL)
+2019-12-01T11:57:39.452431Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'
+2019-12-01T11:57:39.456760Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'
+2019-12-01T11:57:39.460272Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'
+2019-12-01T11:57:39.462972Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'
+2019-12-01T11:57:39.469425Z	   11 Query	CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL)
+2019-12-01T11:57:39.542940Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'
+2019-12-01T11:57:39.544121Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'
+2019-12-01T11:57:39.545197Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'
+2019-12-01T11:57:39.546155Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'
+2019-12-01T11:57:39.548798Z	   11 Query	ALTER TABLE `django_content_type` ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (`app_label`, `model`)
+2019-12-01T11:57:39.590017Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:39.591325Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:39.593021Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0001_initial', '2019-12-01 11:57:39.591180')
+2019-12-01T11:57:39.594012Z	   11 Query	COMMIT
+2019-12-01T11:57:39.603269Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:39.605556Z	   11 Query	CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL)
+2019-12-01T11:57:39.677157Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'
+2019-12-01T11:57:39.679308Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'
+2019-12-01T11:57:39.680567Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'
+2019-12-01T11:57:39.681974Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'
+2019-12-01T11:57:39.686703Z	   11 Query	CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE)
+2019-12-01T11:57:39.756199Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group'
+2019-12-01T11:57:39.758908Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group'
+2019-12-01T11:57:39.761052Z	   11 Query	CREATE TABLE `auth_group_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL)
+2019-12-01T11:57:39.815944Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'
+2019-12-01T11:57:39.818609Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'
+2019-12-01T11:57:39.820136Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'
+2019-12-01T11:57:39.825626Z	   11 Query	CREATE TABLE `auth_user` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NOT NULL, `is_superuser` bool NOT NULL, `username` varchar(30) NOT NULL UNIQUE, `first_name` varchar(30) NOT NULL, `last_name` varchar(30) NOT NULL, `email` varchar(75) NOT NULL, `is_staff` bool NOT NULL, `is_active` bool NOT NULL, `date_joined` datetime(6) NOT NULL)
+2019-12-01T11:57:39.894589Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.896354Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.897613Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.898714Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.899427Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.901908Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.903488Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.906201Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.906908Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.908595Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.909415Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'
+2019-12-01T11:57:39.910772Z	   11 Query	CREATE TABLE `auth_user_groups` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `group_id` integer NOT NULL)
+2019-12-01T11:57:39.993809Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_groups'
+2019-12-01T11:57:39.996400Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_groups'
+2019-12-01T11:57:39.999195Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_groups'
+2019-12-01T11:57:40.001616Z	   11 Query	CREATE TABLE `auth_user_user_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `permission_id` integer NOT NULL)
+2019-12-01T11:57:40.068650Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_user_permissions'
+2019-12-01T11:57:40.070219Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_user_permissions'
+2019-12-01T11:57:40.071057Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_user_permissions'
+2019-12-01T11:57:40.071889Z	   11 Query	ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+2019-12-01T11:57:40.234068Z	   11 Query	ALTER TABLE `auth_permission` ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (`content_type_id`, `codename`)
+2019-12-01T11:57:40.299651Z	   11 Query	ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+2019-12-01T11:57:40.447816Z	   11 Query	ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+2019-12-01T11:57:40.579700Z	   11 Query	ALTER TABLE `auth_group_permissions` ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (`group_id`, `permission_id`)
+2019-12-01T11:57:40.633274Z	   11 Query	ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+2019-12-01T11:57:40.757909Z	   11 Query	ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+2019-12-01T11:57:40.914037Z	   11 Query	ALTER TABLE `auth_user_groups` ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (`user_id`, `group_id`)
+2019-12-01T11:57:40.988378Z	   11 Query	ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+2019-12-01T11:57:41.144992Z	   11 Query	ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+2019-12-01T11:57:41.295237Z	   11 Query	ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (`user_id`, `permission_id`)
+2019-12-01T11:57:41.357580Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:41.358611Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:41.360448Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0001_initial', '2019-12-01 11:57:41.358500')
+2019-12-01T11:57:41.361277Z	   11 Query	COMMIT
+2019-12-01T11:57:41.379292Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:41.404194Z	   11 Query	CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL, `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` integer NOT NULL)
+2019-12-01T11:57:41.468685Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:57:41.470105Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:57:41.471217Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:57:41.474233Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:57:41.476248Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:57:41.478205Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:57:41.479138Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:57:41.480156Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'
+2019-12-01T11:57:41.481292Z	   11 Query	ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+2019-12-01T11:57:41.652276Z	   11 Query	ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+2019-12-01T11:57:41.885598Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:41.888901Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:41.891937Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0001_initial', '2019-12-01 11:57:41.888446')
+2019-12-01T11:57:41.893782Z	   11 Query	COMMIT
+2019-12-01T11:57:41.905584Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:41.917445Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:41.919374Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:41.920376Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0002_logentry_remove_auto_add', '2019-12-01 11:57:41.919160')
+2019-12-01T11:57:41.921218Z	   11 Query	COMMIT
+2019-12-01T11:57:41.930437Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:41.937045Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:41.938203Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:41.938938Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0003_logentry_add_action_flag_choices', '2019-12-01 11:57:41.938049')
+2019-12-01T11:57:41.939707Z	   11 Query	COMMIT
+2019-12-01T11:57:41.948360Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:41.953698Z	   11 Query	ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL
+2019-12-01T11:57:42.068188Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.073458Z	   11 Query	COMMIT
+2019-12-01T11:57:42.074201Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.077504Z	   11 Query	ALTER TABLE `django_content_type` DROP COLUMN `name`
+2019-12-01T11:57:42.184641Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:42.185739Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.186506Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0002_remove_content_type_name', '2019-12-01 11:57:42.185590')
+2019-12-01T11:57:42.187103Z	   11 Query	COMMIT
+2019-12-01T11:57:42.196417Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.199803Z	   11 Query	ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL
+2019-12-01T11:57:42.365871Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:42.366966Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.367678Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0002_alter_permission_name_max_length', '2019-12-01 11:57:42.366826')
+2019-12-01T11:57:42.368605Z	   11 Query	COMMIT
+2019-12-01T11:57:42.377203Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.383245Z	   11 Query	ALTER TABLE `auth_user` MODIFY `email` varchar(254) NOT NULL
+2019-12-01T11:57:42.402075Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:42.403109Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.403860Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0003_alter_user_email_max_length', '2019-12-01 11:57:42.402965')
+2019-12-01T11:57:42.405797Z	   11 Query	COMMIT
+2019-12-01T11:57:42.416281Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.422244Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:42.423354Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.424437Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0004_alter_user_username_opts', '2019-12-01 11:57:42.423184')
+2019-12-01T11:57:42.426019Z	   11 Query	COMMIT
+2019-12-01T11:57:42.434682Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.441312Z	   11 Query	ALTER TABLE `auth_user` MODIFY `last_login` datetime(6) NULL
+2019-12-01T11:57:42.566206Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:42.567252Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.567925Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0005_alter_user_last_login_null', '2019-12-01 11:57:42.567107')
+2019-12-01T11:57:42.568504Z	   11 Query	COMMIT
+2019-12-01T11:57:42.578041Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.581181Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:42.582471Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.583305Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0006_require_contenttypes_0002', '2019-12-01 11:57:42.582335')
+2019-12-01T11:57:42.584535Z	   11 Query	COMMIT
+2019-12-01T11:57:42.593055Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.600086Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:42.601611Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.602247Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0007_alter_validators_add_error_messages', '2019-12-01 11:57:42.601465')
+2019-12-01T11:57:42.604035Z	   11 Query	COMMIT
+2019-12-01T11:57:42.613687Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.619418Z	   11 Query	ALTER TABLE `auth_user` MODIFY `username` varchar(150) NOT NULL
+2019-12-01T11:57:42.775273Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:42.776404Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.777088Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0008_alter_user_username_max_length', '2019-12-01 11:57:42.776252')
+2019-12-01T11:57:42.778538Z	   11 Query	COMMIT
+2019-12-01T11:57:42.789395Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.795721Z	   11 Query	ALTER TABLE `auth_user` MODIFY `last_name` varchar(150) NOT NULL
+2019-12-01T11:57:42.976212Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:42.977318Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:42.977926Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0009_alter_user_last_name_max_length', '2019-12-01 11:57:42.977175')
+2019-12-01T11:57:42.978491Z	   11 Query	COMMIT
+2019-12-01T11:57:42.987619Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:42.989770Z	   11 Query	CREATE TABLE `quiz_answer` (`answer_id` char(32) NOT NULL PRIMARY KEY, `answer` varchar(20) NOT NULL, `is_correct` bool NOT NULL, `challenge_count` integer NOT NULL, `is_deleted` bool NOT NULL, `create_date` datetime(6) NOT NULL, `update_date` datetime(6) NOT NULL)
+2019-12-01T11:57:43.047037Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.047944Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.048633Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.049247Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.049942Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.050599Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.051284Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.053209Z	   11 Query	CREATE TABLE `quiz_group` (`group_id` char(32) NOT NULL PRIMARY KEY, `group_name` varchar(30) NOT NULL UNIQUE, `is_deleted` bool NOT NULL, `create_date` datetime(6) NOT NULL, `update_date` datetime(6) NOT NULL)
+2019-12-01T11:57:43.119393Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:57:43.121520Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:57:43.123933Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:57:43.124894Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:57:43.126075Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_group'
+2019-12-01T11:57:43.130900Z	   11 Query	CREATE TABLE `quiz_question` (`question_id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `question_type` varchar(6) NOT NULL, `question` varchar(255) NOT NULL, `shape_path` varchar(200) NULL, `correct` varchar(255) NOT NULL, `choice_1` varchar(255) NULL, `choice_2` varchar(255) NULL, `choice_3` varchar(255) NULL, `choice_4` varchar(255) NULL, `is_deleted` bool NOT NULL, `create_date` datetime(6) NOT NULL, `update_date` datetime(6) NOT NULL, `group_id_id` char(32) NOT NULL)
+2019-12-01T11:57:43.191257Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.194998Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.198290Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.202282Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.203130Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.204014Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.205122Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.205869Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.206878Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.208210Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.208945Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.210094Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.211131Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.213323Z	   11 Query	CREATE TABLE `quiz_user` (`user_id` char(32) NOT NULL PRIMARY KEY, `user_name` varchar(30) NOT NULL UNIQUE, `mail_address` varchar(100) NOT NULL UNIQUE, `authority` bool NOT NULL, `correct_answer_rate` double precision NULL, `is_deleted` bool NOT NULL, `create_date` datetime(6) NOT NULL, `update_date` datetime(6) NOT NULL)
+2019-12-01T11:57:43.289019Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:57:43.290337Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:57:43.291084Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:57:43.291988Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:57:43.292808Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:57:43.294179Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:57:43.294791Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:57:43.296159Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_user'
+2019-12-01T11:57:43.300146Z	   11 Query	ALTER TABLE `quiz_question` ADD COLUMN `user_id_id` char(32) NOT NULL
+2019-12-01T11:57:43.396872Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:43.402055Z	   11 Query	ALTER TABLE `quiz_answer` ADD COLUMN `group_id_id` char(32) NOT NULL
+2019-12-01T11:57:43.499103Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.503897Z	   11 Query	ALTER TABLE `quiz_answer` ADD COLUMN `question_id_id` integer NOT NULL
+2019-12-01T11:57:43.628369Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.633410Z	   11 Query	ALTER TABLE `quiz_answer` ADD COLUMN `user_id_id` char(32) NOT NULL
+2019-12-01T11:57:43.737646Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_answer'
+2019-12-01T11:57:43.738670Z	   11 Query	ALTER TABLE `quiz_question` ADD CONSTRAINT `quiz_question_group_id_id_18bb7e59_fk_quiz_group_group_id` FOREIGN KEY (`group_id_id`) REFERENCES `quiz_group` (`group_id`)
+2019-12-01T11:57:43.899814Z	   11 Query	ALTER TABLE `quiz_question` ADD CONSTRAINT `quiz_question_user_id_id_d7148297_fk_quiz_user_user_id` FOREIGN KEY (`user_id_id`) REFERENCES `quiz_user` (`user_id`)
+2019-12-01T11:57:44.067700Z	   11 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_group_id_id_a354aad5_fk_quiz_group_group_id` FOREIGN KEY (`group_id_id`) REFERENCES `quiz_group` (`group_id`)
+2019-12-01T11:57:44.232938Z	   11 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_question_id_id_514013cb_fk_quiz_question_question_id` FOREIGN KEY (`question_id_id`) REFERENCES `quiz_question` (`question_id`)
+2019-12-01T11:57:44.416794Z	   11 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_user_id_id_596808a9_fk_quiz_user_user_id` FOREIGN KEY (`user_id_id`) REFERENCES `quiz_user` (`user_id`)
+2019-12-01T11:57:44.583692Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:44.585454Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:44.586148Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('quiz', '0001_initial', '2019-12-01 11:57:44.585328')
+2019-12-01T11:57:44.586927Z	   11 Query	COMMIT
+2019-12-01T11:57:44.597495Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:44.601913Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:44.603367Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:44.604161Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('quiz', '0002_auto_20191019_2051', '2019-12-01 11:57:44.603226')
+2019-12-01T11:57:44.605797Z	   11 Query	COMMIT
+2019-12-01T11:57:44.614508Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:44.620299Z	   11 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_answer'
+2019-12-01T11:57:44.621349Z	   11 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_answer'
+2019-12-01T11:57:44.622035Z	   11 Query	SHOW INDEX FROM `quiz_answer`
+2019-12-01T11:57:44.623022Z	   11 Query	ALTER TABLE `quiz_answer` DROP FOREIGN KEY `quiz_answer_group_id_id_a354aad5_fk_quiz_group_group_id`
+2019-12-01T11:57:44.641051Z	   11 Query	ALTER TABLE `quiz_answer` CHANGE `group_id_id` `group_id` char(32) NOT NULL
+2019-12-01T11:57:44.660329Z	   11 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_group_id_19771dee_fk_quiz_group_group_id` FOREIGN KEY (`group_id`) REFERENCES `quiz_group` (`group_id`)
+2019-12-01T11:57:44.848457Z	   11 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_answer'
+2019-12-01T11:57:44.851619Z	   11 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_answer'
+2019-12-01T11:57:44.852364Z	   11 Query	SHOW INDEX FROM `quiz_answer`
+2019-12-01T11:57:44.854538Z	   11 Query	ALTER TABLE `quiz_answer` DROP FOREIGN KEY `quiz_answer_question_id_id_514013cb_fk_quiz_question_question_id`
+2019-12-01T11:57:44.873362Z	   11 Query	ALTER TABLE `quiz_answer` CHANGE `question_id_id` `question_id` integer NOT NULL
+2019-12-01T11:57:44.894152Z	   11 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_question_id_26edde8a_fk_quiz_question_question_id` FOREIGN KEY (`question_id`) REFERENCES `quiz_question` (`question_id`)
+2019-12-01T11:57:45.074004Z	   11 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_answer'
+2019-12-01T11:57:45.075631Z	   11 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_answer'
+2019-12-01T11:57:45.078295Z	   11 Query	SHOW INDEX FROM `quiz_answer`
+2019-12-01T11:57:45.082286Z	   11 Query	ALTER TABLE `quiz_answer` DROP FOREIGN KEY `quiz_answer_user_id_id_596808a9_fk_quiz_user_user_id`
+2019-12-01T11:57:45.106259Z	   11 Query	ALTER TABLE `quiz_answer` CHANGE `user_id_id` `user_id` char(32) NOT NULL
+2019-12-01T11:57:45.134008Z	   11 Query	ALTER TABLE `quiz_answer` ADD CONSTRAINT `quiz_answer_user_id_42c7c6cb_fk_quiz_user_user_id` FOREIGN KEY (`user_id`) REFERENCES `quiz_user` (`user_id`)
+2019-12-01T11:57:45.360267Z	   11 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_question'
+2019-12-01T11:57:45.363057Z	   11 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_question'
+2019-12-01T11:57:45.365084Z	   11 Query	SHOW INDEX FROM `quiz_question`
+2019-12-01T11:57:45.367271Z	   11 Query	ALTER TABLE `quiz_question` DROP FOREIGN KEY `quiz_question_group_id_id_18bb7e59_fk_quiz_group_group_id`
+2019-12-01T11:57:45.385674Z	   11 Query	ALTER TABLE `quiz_question` CHANGE `group_id_id` `group_id` char(32) NOT NULL
+2019-12-01T11:57:45.408081Z	   11 Query	ALTER TABLE `quiz_question` ADD CONSTRAINT `quiz_question_group_id_b1962eae_fk_quiz_group_group_id` FOREIGN KEY (`group_id`) REFERENCES `quiz_group` (`group_id`)
+2019-12-01T11:57:45.518982Z	   11 Query	SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'quiz_question'
+2019-12-01T11:57:45.520261Z	   11 Query	SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'quiz_question'
+2019-12-01T11:57:45.520898Z	   11 Query	SHOW INDEX FROM `quiz_question`
+2019-12-01T11:57:45.521923Z	   11 Query	ALTER TABLE `quiz_question` DROP FOREIGN KEY `quiz_question_user_id_id_d7148297_fk_quiz_user_user_id`
+2019-12-01T11:57:45.540371Z	   11 Query	ALTER TABLE `quiz_question` CHANGE `user_id_id` `user_id` char(32) NOT NULL
+2019-12-01T11:57:45.559315Z	   11 Query	ALTER TABLE `quiz_question` ADD CONSTRAINT `quiz_question_user_id_c015f9f3_fk_quiz_user_user_id` FOREIGN KEY (`user_id`) REFERENCES `quiz_user` (`user_id`)
+2019-12-01T11:57:45.726262Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:45.728290Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:45.730897Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('quiz', '0003_auto_20191020_0316', '2019-12-01 11:57:45.728139')
+2019-12-01T11:57:45.731634Z	   11 Query	COMMIT
+2019-12-01T11:57:45.742578Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:45.747506Z	   11 Query	ALTER TABLE `quiz_question` ADD COLUMN `degree` integer DEFAULT 1 NOT NULL
+2019-12-01T11:57:45.867984Z	   11 Query	ALTER TABLE `quiz_question` ALTER COLUMN `degree` DROP DEFAULT
+2019-12-01T11:57:45.877659Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'quiz_question'
+2019-12-01T11:57:45.878931Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:45.882330Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:45.884079Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('quiz', '0004_question_degree', '2019-12-01 11:57:45.882186')
+2019-12-01T11:57:45.884855Z	   11 Query	COMMIT
+2019-12-01T11:57:45.894950Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:45.897218Z	   11 Query	CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL)
+2019-12-01T11:57:45.968596Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'
+2019-12-01T11:57:45.971756Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'
+2019-12-01T11:57:45.972464Z	   11 Query	SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'
+2019-12-01T11:57:45.973534Z	   11 Query	CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`)
+2019-12-01T11:57:46.024507Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:46.026608Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.028479Z	   11 Query	INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('sessions', '0001_initial', '2019-12-01 11:57:46.026457')
+2019-12-01T11:57:46.029072Z	   11 Query	COMMIT
+2019-12-01T11:57:46.041210Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.044681Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:46.045997Z	   11 Query	SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`
+2019-12-01T11:57:46.054740Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'admin' AND `django_content_type`.`model` = 'logentry')
+2019-12-01T11:57:46.057267Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'admin' AND `django_content_type`.`model` = 'logentry')
+2019-12-01T11:57:46.057953Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.058776Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('admin', 'logentry')
+2019-12-01T11:57:46.059460Z	   11 Query	COMMIT
+2019-12-01T11:57:46.067926Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.069784Z	   11 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (1) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:57:46.070841Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.071524Z	   11 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add log entry', 1, 'add_logentry'), ('Can change log entry', 1, 'change_logentry'), ('Can delete log entry', 1, 'delete_logentry'), ('Can view log entry', 1, 'view_logentry')
+2019-12-01T11:57:46.072109Z	   11 Query	COMMIT
+2019-12-01T11:57:46.080588Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.081596Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'admin'
+2019-12-01T11:57:46.082874Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'permission')
+2019-12-01T11:57:46.083933Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'permission')
+2019-12-01T11:57:46.084669Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.085950Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'permission')
+2019-12-01T11:57:46.086693Z	   11 Query	COMMIT
+2019-12-01T11:57:46.103195Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.104304Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'group')
+2019-12-01T11:57:46.105543Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'group')
+2019-12-01T11:57:46.106311Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.107024Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'group')
+2019-12-01T11:57:46.108729Z	   11 Query	COMMIT
+2019-12-01T11:57:46.118109Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.119210Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'user')
+2019-12-01T11:57:46.120257Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'user')
+2019-12-01T11:57:46.120929Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.121612Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'user')
+2019-12-01T11:57:46.122930Z	   11 Query	COMMIT
+2019-12-01T11:57:46.130940Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.132676Z	   11 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (2, 3, 4) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:57:46.133762Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.135287Z	   11 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add permission', 2, 'add_permission'), ('Can change permission', 2, 'change_permission'), ('Can delete permission', 2, 'delete_permission'), ('Can view permission', 2, 'view_permission'), ('Can add group', 3, 'add_group'), ('Can change group', 3, 'change_group'), ('Can delete group', 3, 'delete_group'), ('Can view group', 3, 'view_group'), ('Can add user', 4, 'add_user'), ('Can change user', 4, 'change_user'), ('Can delete user', 4, 'delete_user'), ('Can view user', 4, 'view_user')
+2019-12-01T11:57:46.136104Z	   11 Query	COMMIT
+2019-12-01T11:57:46.146298Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.148350Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'auth'
+2019-12-01T11:57:46.149744Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'contenttypes' AND `django_content_type`.`model` = 'contenttype')
+2019-12-01T11:57:46.151375Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'contenttypes' AND `django_content_type`.`model` = 'contenttype')
+2019-12-01T11:57:46.152173Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.153076Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('contenttypes', 'contenttype')
+2019-12-01T11:57:46.153677Z	   11 Query	COMMIT
+2019-12-01T11:57:46.162223Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.163558Z	   11 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (5) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:57:46.164555Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.165422Z	   11 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add content type', 5, 'add_contenttype'), ('Can change content type', 5, 'change_contenttype'), ('Can delete content type', 5, 'delete_contenttype'), ('Can view content type', 5, 'view_contenttype')
+2019-12-01T11:57:46.166201Z	   11 Query	COMMIT
+2019-12-01T11:57:46.174634Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.176426Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'contenttypes'
+2019-12-01T11:57:46.177704Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'sessions' AND `django_content_type`.`model` = 'session')
+2019-12-01T11:57:46.179157Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'sessions' AND `django_content_type`.`model` = 'session')
+2019-12-01T11:57:46.179972Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.181011Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('sessions', 'session')
+2019-12-01T11:57:46.182057Z	   11 Query	COMMIT
+2019-12-01T11:57:46.190554Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.192597Z	   11 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (6) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:57:46.194255Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.196090Z	   11 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add session', 6, 'add_session'), ('Can change session', 6, 'change_session'), ('Can delete session', 6, 'delete_session'), ('Can view session', 6, 'view_session')
+2019-12-01T11:57:46.196897Z	   11 Query	COMMIT
+2019-12-01T11:57:46.206281Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.208262Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'sessions'
+2019-12-01T11:57:46.209405Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'answer')
+2019-12-01T11:57:46.211351Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'answer')
+2019-12-01T11:57:46.212120Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.212944Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('quiz', 'answer')
+2019-12-01T11:57:46.213969Z	   11 Query	COMMIT
+2019-12-01T11:57:46.223530Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.226687Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'group')
+2019-12-01T11:57:46.227849Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'group')
+2019-12-01T11:57:46.228886Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.231104Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('quiz', 'group')
+2019-12-01T11:57:46.231983Z	   11 Query	COMMIT
+2019-12-01T11:57:46.240611Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.241731Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'question')
+2019-12-01T11:57:46.243495Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'question')
+2019-12-01T11:57:46.244158Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.245776Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('quiz', 'question')
+2019-12-01T11:57:46.246665Z	   11 Query	COMMIT
+2019-12-01T11:57:46.255843Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.257668Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'user')
+2019-12-01T11:57:46.258853Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'quiz' AND `django_content_type`.`model` = 'user')
+2019-12-01T11:57:46.262071Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.263093Z	   11 Query	INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('quiz', 'user')
+2019-12-01T11:57:46.264134Z	   11 Query	COMMIT
+2019-12-01T11:57:46.274506Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.276041Z	   11 Query	SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (8, 9, 10, 7) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC
+2019-12-01T11:57:46.277519Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.279387Z	   11 Query	INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add answer', 7, 'add_answer'), ('Can change answer', 7, 'change_answer'), ('Can delete answer', 7, 'delete_answer'), ('Can view answer', 7, 'view_answer'), ('Can add group', 8, 'add_group'), ('Can change group', 8, 'change_group'), ('Can delete group', 8, 'delete_group'), ('Can view group', 8, 'view_group'), ('Can add question', 9, 'add_question'), ('Can change question', 9, 'change_question'), ('Can delete question', 9, 'delete_question'), ('Can view question', 9, 'view_question'), ('Can add user', 10, 'add_user'), ('Can change user', 10, 'change_user'), ('Can delete user', 10, 'delete_user'), ('Can view user', 10, 'view_user')
+2019-12-01T11:57:46.282019Z	   11 Query	COMMIT
+2019-12-01T11:57:46.293088Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.295397Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'quiz'
+2019-12-01T11:57:46.297493Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'django_filters'
+2019-12-01T11:57:46.319010Z	   11 Query	SHOW FULL TABLES
+2019-12-01T11:57:46.320166Z	   11 Query	SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`
+2019-12-01T11:57:46.329876Z	   11 Query	SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` ORDER BY `django_content_type`.`id` ASC
+2019-12-01T11:57:46.332846Z	   11 Query	SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` ORDER BY `django_session`.`session_key` ASC
+2019-12-01T11:57:46.336384Z	   11 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` ORDER BY `quiz_user`.`user_id` ASC
+2019-12-01T11:57:46.338696Z	   11 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` ORDER BY `quiz_group`.`group_id` ASC
+2019-12-01T11:57:46.341256Z	   11 Query	SELECT `quiz_question`.`question_id`, `quiz_question`.`group_id`, `quiz_question`.`user_id`, `quiz_question`.`question_type`, `quiz_question`.`degree`, `quiz_question`.`question`, `quiz_question`.`shape_path`, `quiz_question`.`correct`, `quiz_question`.`choice_1`, `quiz_question`.`choice_2`, `quiz_question`.`choice_3`, `quiz_question`.`choice_4`, `quiz_question`.`is_deleted`, `quiz_question`.`create_date`, `quiz_question`.`update_date` FROM `quiz_question` ORDER BY `quiz_question`.`question_id` ASC
+2019-12-01T11:57:46.342812Z	   11 Query	SELECT `quiz_answer`.`answer_id`, `quiz_answer`.`user_id`, `quiz_answer`.`group_id`, `quiz_answer`.`question_id`, `quiz_answer`.`answer`, `quiz_answer`.`is_correct`, `quiz_answer`.`challenge_count`, `quiz_answer`.`is_deleted`, `quiz_answer`.`create_date`, `quiz_answer`.`update_date` FROM `quiz_answer` ORDER BY `quiz_answer`.`answer_id` ASC
+2019-12-01T11:57:46.344734Z	   11 Query	SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` ORDER BY `auth_permission`.`id` ASC
+2019-12-01T11:57:46.349730Z	   11 Query	SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` ORDER BY `auth_group`.`id` ASC
+2019-12-01T11:57:46.351476Z	   11 Query	SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` ORDER BY `auth_user`.`id` ASC
+2019-12-01T11:57:46.352981Z	   11 Query	SELECT `django_admin_log`.`id`, `django_admin_log`.`action_time`, `django_admin_log`.`user_id`, `django_admin_log`.`content_type_id`, `django_admin_log`.`object_id`, `django_admin_log`.`object_repr`, `django_admin_log`.`action_flag`, `django_admin_log`.`change_message` FROM `django_admin_log` ORDER BY `django_admin_log`.`id` ASC
+2019-12-01T11:57:46.411099Z	   11 Query	SELECT ENGINE FROM INFORMATION_SCHEMA.ENGINES WHERE SUPPORT = 'DEFAULT'
+2019-12-01T11:57:46.411902Z	   11 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.412518Z	   11 Query	SAVEPOINT `s140663571455304_x1`
+2019-12-01T11:57:46.413299Z	   11 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('6e9145ff11ea4498b4836a40c3872963', '名前1', 0, '2019-12-01 11:57:46.412979', '2019-12-01 11:57:46.412986')
+2019-12-01T11:57:46.414057Z	   11 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('d120641c92534922882f5c78cd999a05', '名前2', 0, '2019-12-01 11:57:46.413836', '2019-12-01 11:57:46.413841')
+2019-12-01T11:57:46.414893Z	   11 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('d0d3daf13cab47f9b52b98eaf055274d', '名前3', 1, '2019-12-01 11:57:46.414606', '2019-12-01 11:57:46.414629')
+2019-12-01T11:57:46.416112Z	   11 Query	SELECT (1) AS `a` FROM `quiz_group` WHERE `quiz_group`.`is_deleted` = 0  LIMIT 1
+2019-12-01T11:57:46.417034Z	   11 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` WHERE `quiz_group`.`is_deleted` = 0
+2019-12-01T11:57:46.419396Z	   11 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` WHERE (`quiz_group`.`is_deleted` = 0 AND `quiz_group`.`group_name` = '名前1')
+2019-12-01T11:57:46.420888Z	   11 Query	ROLLBACK TO SAVEPOINT `s140663571455304_x1`
+2019-12-01T11:57:46.430656Z	   11 Query	RELEASE SAVEPOINT `s140663571455304_x1`
+2019-12-01T11:57:46.431977Z	   11 Query	SAVEPOINT `s140663571455304_x2`
+2019-12-01T11:57:46.433272Z	   11 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('ad4821c3c9944754a4d54baeb7858d7d', '名前1', 0, '2019-12-01 11:57:46.432966', '2019-12-01 11:57:46.432973')
+2019-12-01T11:57:46.434124Z	   11 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('3f845fdc99d7476387748839d9a385a2', '名前2', 0, '2019-12-01 11:57:46.433887', '2019-12-01 11:57:46.433892')
+2019-12-01T11:57:46.435215Z	   11 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('417796bc41354b8882b94f20ba3a5468', '名前3', 1, '2019-12-01 11:57:46.434964', '2019-12-01 11:57:46.434968')
+2019-12-01T11:57:46.437107Z	   11 Query	SELECT (1) AS `a` FROM `quiz_group` WHERE `quiz_group`.`group_name` = 'なぞなぞ'  LIMIT 1
+2019-12-01T11:57:46.438452Z	   11 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('c141d6b15c3642cd9276fd4e6831fc3a', 'なぞなぞ', 0, '2019-12-01 11:57:46.438150', '2019-12-01 11:57:46.438157')
+2019-12-01T11:57:46.439462Z	   11 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` WHERE `quiz_group`.`group_name` = 'なぞなぞ'
+2019-12-01T11:57:46.441127Z	   11 Query	ROLLBACK TO SAVEPOINT `s140663571455304_x2`
+2019-12-01T11:57:46.449752Z	   11 Query	RELEASE SAVEPOINT `s140663571455304_x2`
+2019-12-01T11:57:46.451942Z	   11 Query	ROLLBACK
+2019-12-01T11:57:46.453068Z	   11 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.453982Z	   11 Quit	
+2019-12-01T11:57:46.455193Z	   12 Connect	root@personality_analysis_quiz_1.personality_analysis_default on test_quiz using TCP/IP
+2019-12-01T11:57:46.455637Z	   12 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.456013Z	   12 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.456487Z	   12 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:57:46.456921Z	   12 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.457342Z	   12 Query	SAVEPOINT `s140663571455304_x3`
+2019-12-01T11:57:46.458270Z	   12 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('2aec2be5060140f8b1a7122c0ae8c7b2', 'ユーザ1', 'aiu1@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.457949', '2019-12-01 11:57:46.457958')
+2019-12-01T11:57:46.461425Z	   12 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('210351fce0104f0b9fb45312b1b39e2f', 'ユーザ2', 'aiu2@mail.com', 0, NULL, 1, '2019-12-01 11:57:46.461147', '2019-12-01 11:57:46.461153')
+2019-12-01T11:57:46.462277Z	   12 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('3ef5461ce3a24c498e4e9dbce50b14ea', 'ユーザ3', 'aiu3@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.461996', '2019-12-01 11:57:46.462002')
+2019-12-01T11:57:46.462986Z	   12 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('0c34b14c376443ee964fae1a7d81d955', '名前1', 0, '2019-12-01 11:57:46.462750', '2019-12-01 11:57:46.462755')
+2019-12-01T11:57:46.464328Z	   12 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('50798f002c4b43fcaa3fba2a97f7e5d7', '名前2', 0, '2019-12-01 11:57:46.464118', '2019-12-01 11:57:46.464124')
+2019-12-01T11:57:46.466207Z	   12 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('cbde80a99b834a99ab96fd8959c07c95', '名前3', 1, '2019-12-01 11:57:46.465974', '2019-12-01 11:57:46.465979')
+2019-12-01T11:57:46.467092Z	   12 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE `quiz_user`.`user_name` = 'ユーザ1'
+2019-12-01T11:57:46.468402Z	   12 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` WHERE `quiz_group`.`group_name` = '名前1'
+2019-12-01T11:57:46.469596Z	   12 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` WHERE `quiz_group`.`group_name` = '名前2'
+2019-12-01T11:57:46.470833Z	   12 Query	INSERT INTO `quiz_question` (`group_id`, `user_id`, `question_type`, `degree`, `question`, `shape_path`, `correct`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `is_deleted`, `create_date`, `update_date`) VALUES ('0c34b14c376443ee964fae1a7d81d955', '2aec2be5060140f8b1a7122c0ae8c7b2', 'select', NULL, '問題1', NULL, '1', 'a', 'b', 'c', 'd', 0, '2019-12-01 11:57:46.470443', '2019-12-01 11:57:46.470449')
+2019-12-01T11:57:46.477248Z	   12 Query	ROLLBACK TO SAVEPOINT `s140663571455304_x3`
+2019-12-01T11:57:46.485673Z	   12 Query	RELEASE SAVEPOINT `s140663571455304_x3`
+2019-12-01T11:57:46.486668Z	   12 Query	SAVEPOINT `s140663571455304_x4`
+2019-12-01T11:57:46.487474Z	   12 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('5a25127a33434543b62a79a871474656', 'ユーザ1', 'aiu1@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.487162', '2019-12-01 11:57:46.487171')
+2019-12-01T11:57:46.492403Z	   12 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('481044fb7cdb4d8fbbe94def5ef53595', 'ユーザ2', 'aiu2@mail.com', 0, NULL, 1, '2019-12-01 11:57:46.492063', '2019-12-01 11:57:46.492071')
+2019-12-01T11:57:46.493239Z	   12 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('cfe9098be8d042ce9b32fa2272f5318c', 'ユーザ3', 'aiu3@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.492943', '2019-12-01 11:57:46.492949')
+2019-12-01T11:57:46.494153Z	   12 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('45b9be2483e843a29f8ac9efa0323d6d', '名前1', 0, '2019-12-01 11:57:46.493920', '2019-12-01 11:57:46.493925')
+2019-12-01T11:57:46.495032Z	   12 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('218ce027a23349f99c5f24d15f2903fa', '名前2', 0, '2019-12-01 11:57:46.494834', '2019-12-01 11:57:46.494839')
+2019-12-01T11:57:46.496084Z	   12 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('c27d753f8b614c85a453552287b53ce1', '名前3', 1, '2019-12-01 11:57:46.495844', '2019-12-01 11:57:46.495850')
+2019-12-01T11:57:46.498292Z	   12 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE `quiz_user`.`user_name` = 'ユーザ1'
+2019-12-01T11:57:46.500787Z	   12 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` WHERE `quiz_group`.`group_name` = '名前1'
+2019-12-01T11:57:46.502568Z	   12 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` WHERE `quiz_group`.`group_name` = '名前2'
+2019-12-01T11:57:46.503751Z	   12 Query	INSERT INTO `quiz_question` (`group_id`, `user_id`, `question_type`, `degree`, `question`, `shape_path`, `correct`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `is_deleted`, `create_date`, `update_date`) VALUES ('45b9be2483e843a29f8ac9efa0323d6d', '5a25127a33434543b62a79a871474656', 'select', NULL, '問題1', NULL, '1', 'a', 'b', 'c', 'd', 0, '2019-12-01 11:57:46.503417', '2019-12-01 11:57:46.503422')
+2019-12-01T11:57:46.506388Z	   12 Query	ROLLBACK TO SAVEPOINT `s140663571455304_x4`
+2019-12-01T11:57:46.516314Z	   12 Query	RELEASE SAVEPOINT `s140663571455304_x4`
+2019-12-01T11:57:46.518134Z	   12 Query	ROLLBACK
+2019-12-01T11:57:46.518689Z	   12 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.519163Z	   12 Quit	
+2019-12-01T11:57:46.520245Z	   13 Connect	root@personality_analysis_quiz_1.personality_analysis_default on test_quiz using TCP/IP
+2019-12-01T11:57:46.520647Z	   13 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.521030Z	   13 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.521460Z	   13 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:57:46.521952Z	   13 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.522482Z	   13 Query	SAVEPOINT `s140663571455304_x5`
+2019-12-01T11:57:46.523331Z	   13 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('2bdea454fffa46c6bec153ec48f90d50', 'ユーザ1', 'aiu1@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.522978', '2019-12-01 11:57:46.522986')
+2019-12-01T11:57:46.524190Z	   13 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('fc7d915962fc4d1d8a9d1a012ba6892a', 'ユーザ2', 'aiu2@mail.com', 0, NULL, 1, '2019-12-01 11:57:46.523890', '2019-12-01 11:57:46.523896')
+2019-12-01T11:57:46.525027Z	   13 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('1699721cc6a04c378a60acb9999bbf26', 'ユーザ3', 'aiu3@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.524723', '2019-12-01 11:57:46.524728')
+2019-12-01T11:57:46.526494Z	   13 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE `quiz_user`.`user_name` = 'ユーザ3'
+2019-12-01T11:57:46.528029Z	   13 Query	SELECT (1) AS `a` FROM `quiz_user` WHERE `quiz_user`.`is_deleted` = 0  LIMIT 1
+2019-12-01T11:57:46.531393Z	   13 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE `quiz_user`.`is_deleted` = 0
+2019-12-01T11:57:46.532977Z	   13 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE (`quiz_user`.`is_deleted` = 0 AND `quiz_user`.`user_name` = 'ユーザ3')
+2019-12-01T11:57:46.534906Z	   13 Query	ROLLBACK TO SAVEPOINT `s140663571455304_x5`
+2019-12-01T11:57:46.543064Z	   13 Query	RELEASE SAVEPOINT `s140663571455304_x5`
+2019-12-01T11:57:46.543971Z	   13 Query	ROLLBACK
+2019-12-01T11:57:46.544595Z	   13 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.545029Z	   13 Quit	
+2019-12-01T11:57:46.546061Z	   14 Connect	root@personality_analysis_quiz_1.personality_analysis_default on test_quiz using TCP/IP
+2019-12-01T11:57:46.546558Z	   14 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.547017Z	   14 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.548045Z	   14 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:57:46.548647Z	   14 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.549218Z	   14 Query	SAVEPOINT `s140663571455304_x6`
+2019-12-01T11:57:46.550024Z	   14 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('01925ff053254c909244954d195e560c', 'ユーザ1', 'aiu1@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.549712', '2019-12-01 11:57:46.549719')
+2019-12-01T11:57:46.551525Z	   14 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('faf09dd3118341abb5867d39e7a97b41', 'ユーザ2', 'aiu2@mail.com', 0, NULL, 1, '2019-12-01 11:57:46.551221', '2019-12-01 11:57:46.551226')
+2019-12-01T11:57:46.552276Z	   14 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('b04442e70a7948109b9975c40982c2e4', 'ユーザ3', 'aiu3@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.552031', '2019-12-01 11:57:46.552037')
+2019-12-01T11:57:46.553456Z	   14 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('b596dc851ee9422b9960a6d4787f62d2', '名前1', 0, '2019-12-01 11:57:46.553206', '2019-12-01 11:57:46.553212')
+2019-12-01T11:57:46.554296Z	   14 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('1e16d15ea3ac480789a5cfd4a6245e8e', '名前2', 0, '2019-12-01 11:57:46.554048', '2019-12-01 11:57:46.554053')
+2019-12-01T11:57:46.554934Z	   14 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('d674c8b09f4a40d2a759c5b0864e0115', '名前3', 1, '2019-12-01 11:57:46.554697', '2019-12-01 11:57:46.554702')
+2019-12-01T11:57:46.556334Z	   14 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE `quiz_user`.`user_name` = 'ユーザ1'
+2019-12-01T11:57:46.558035Z	   14 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` WHERE `quiz_group`.`group_name` = '名前2'
+2019-12-01T11:57:46.559254Z	   14 Query	INSERT INTO `quiz_question` (`group_id`, `user_id`, `question_type`, `degree`, `question`, `shape_path`, `correct`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `is_deleted`, `create_date`, `update_date`) VALUES ('1e16d15ea3ac480789a5cfd4a6245e8e', '01925ff053254c909244954d195e560c', 'select', NULL, '問題1', NULL, '1', 'a', 'b', 'c', 'd', 0, '2019-12-01 11:57:46.558915', '2019-12-01 11:57:46.558920')
+2019-12-01T11:57:46.560978Z	   14 Query	ROLLBACK TO SAVEPOINT `s140663571455304_x6`
+2019-12-01T11:57:46.569018Z	   14 Query	RELEASE SAVEPOINT `s140663571455304_x6`
+2019-12-01T11:57:46.569515Z	   14 Query	ROLLBACK
+2019-12-01T11:57:46.571093Z	   14 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.571734Z	   14 Quit	
+2019-12-01T11:57:46.572845Z	   15 Connect	root@personality_analysis_quiz_1.personality_analysis_default on test_quiz using TCP/IP
+2019-12-01T11:57:46.573270Z	   15 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.573881Z	   15 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.574491Z	   15 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:57:46.574939Z	   15 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.576095Z	   15 Query	SAVEPOINT `s140663571455304_x7`
+2019-12-01T11:57:46.578476Z	   15 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('1242d3385e42405a8397b77e3e299249', 'ユーザ1', 'aiu1@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.578139', '2019-12-01 11:57:46.578146')
+2019-12-01T11:57:46.579206Z	   15 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('3964a97279f34142ad200dc0daa2662e', 'ユーザ2', 'aiu2@mail.com', 0, NULL, 1, '2019-12-01 11:57:46.578938', '2019-12-01 11:57:46.578944')
+2019-12-01T11:57:46.579961Z	   15 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('b9f6c9dfa49b497ab0cd595e7844b059', 'ユーザ3', 'aiu3@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.579656', '2019-12-01 11:57:46.579673')
+2019-12-01T11:57:46.580602Z	   15 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('0965490d471e4d8bae34b844cfe7e1e8', '名前1', 0, '2019-12-01 11:57:46.580390', '2019-12-01 11:57:46.580395')
+2019-12-01T11:57:46.581269Z	   15 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('5c339299c542475ab3efb9fafbbc3af0', '名前2', 0, '2019-12-01 11:57:46.581001', '2019-12-01 11:57:46.581006')
+2019-12-01T11:57:46.581872Z	   15 Query	INSERT INTO `quiz_group` (`group_id`, `group_name`, `is_deleted`, `create_date`, `update_date`) VALUES ('4f9cd47bd2474945b7525af9a3456c84', '名前3', 1, '2019-12-01 11:57:46.581647', '2019-12-01 11:57:46.581652')
+2019-12-01T11:57:46.582698Z	   15 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE `quiz_user`.`user_name` = 'ユーザ1'
+2019-12-01T11:57:46.584579Z	   15 Query	SELECT `quiz_group`.`group_id`, `quiz_group`.`group_name`, `quiz_group`.`is_deleted`, `quiz_group`.`create_date`, `quiz_group`.`update_date` FROM `quiz_group` WHERE `quiz_group`.`group_name` = '名前2'
+2019-12-01T11:57:46.586596Z	   15 Query	INSERT INTO `quiz_question` (`group_id`, `user_id`, `question_type`, `degree`, `question`, `shape_path`, `correct`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `is_deleted`, `create_date`, `update_date`) VALUES ('5c339299c542475ab3efb9fafbbc3af0', '1242d3385e42405a8397b77e3e299249', 'select', NULL, '問題1', NULL, '1', 'a', 'b', 'c', 'd', 0, '2019-12-01 11:57:46.586230', '2019-12-01 11:57:46.586235')
+2019-12-01T11:57:46.588124Z	   15 Query	ROLLBACK TO SAVEPOINT `s140663571455304_x7`
+2019-12-01T11:57:46.596637Z	   15 Query	RELEASE SAVEPOINT `s140663571455304_x7`
+2019-12-01T11:57:46.597460Z	   15 Query	ROLLBACK
+2019-12-01T11:57:46.598450Z	   15 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.599454Z	   15 Quit	
+2019-12-01T11:57:46.600396Z	   16 Connect	root@personality_analysis_quiz_1.personality_analysis_default on test_quiz using TCP/IP
+2019-12-01T11:57:46.600808Z	   16 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.601198Z	   16 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.601612Z	   16 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:57:46.603715Z	   16 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.604235Z	   16 Query	SAVEPOINT `s140663571455304_x8`
+2019-12-01T11:57:46.605027Z	   16 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('a4087113f8504ef3bbf8c5e0f79b7b78', 'ユーザ1', 'aiu1@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.604696', '2019-12-01 11:57:46.604704')
+2019-12-01T11:57:46.608950Z	   16 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('3e26f896d61f4b9ca443613e1f0fc40c', 'ユーザ2', 'aiu2@mail.com', 0, NULL, 1, '2019-12-01 11:57:46.608653', '2019-12-01 11:57:46.608660')
+2019-12-01T11:57:46.609688Z	   16 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('8a3c853cf2ee4077b01ae2ee98cd3011', 'ユーザ3', 'aiu3@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.609433', '2019-12-01 11:57:46.609438')
+2019-12-01T11:57:46.610839Z	   16 Query	SELECT (1) AS `a` FROM `quiz_user` WHERE `quiz_user`.`is_deleted` = 0  LIMIT 1
+2019-12-01T11:57:46.611760Z	   16 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE `quiz_user`.`is_deleted` = 0
+2019-12-01T11:57:46.614417Z	   16 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE (`quiz_user`.`is_deleted` = 0 AND `quiz_user`.`user_name` = 'ユーザ1')
+2019-12-01T11:57:46.615579Z	   16 Query	ROLLBACK TO SAVEPOINT `s140663571455304_x8`
+2019-12-01T11:57:46.623866Z	   16 Query	RELEASE SAVEPOINT `s140663571455304_x8`
+2019-12-01T11:57:46.624603Z	   16 Query	SAVEPOINT `s140663571455304_x9`
+2019-12-01T11:57:46.625982Z	   16 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('363f73040704470fa7f02b98f6189e30', 'ユーザ1', 'aiu1@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.625648', '2019-12-01 11:57:46.625656')
+2019-12-01T11:57:46.626830Z	   16 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('329874954d764c0bb10a28f1f8223ead', 'ユーザ2', 'aiu2@mail.com', 0, NULL, 1, '2019-12-01 11:57:46.626562', '2019-12-01 11:57:46.626567')
+2019-12-01T11:57:46.627793Z	   16 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('db79b70045f14938b7e328c44cf4095c', 'ユーザ3', 'aiu3@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.627533', '2019-12-01 11:57:46.627538')
+2019-12-01T11:57:46.629781Z	   16 Query	SELECT (1) AS `a` FROM `quiz_user` WHERE `quiz_user`.`user_name` = 'ユーザ4'  LIMIT 1
+2019-12-01T11:57:46.630933Z	   16 Query	SELECT (1) AS `a` FROM `quiz_user` WHERE `quiz_user`.`mail_address` = 'aiu4@mail.com'  LIMIT 1
+2019-12-01T11:57:46.634835Z	   16 Query	INSERT INTO `quiz_user` (`user_id`, `user_name`, `mail_address`, `authority`, `correct_answer_rate`, `is_deleted`, `create_date`, `update_date`) VALUES ('f653cdaef0b04d15b52855de524a29a1', 'ユーザ4', 'aiu4@mail.com', 0, NULL, 0, '2019-12-01 11:57:46.634548', '2019-12-01 11:57:46.634554')
+2019-12-01T11:57:46.635942Z	   16 Query	SELECT `quiz_user`.`user_id`, `quiz_user`.`user_name`, `quiz_user`.`mail_address`, `quiz_user`.`authority`, `quiz_user`.`correct_answer_rate`, `quiz_user`.`is_deleted`, `quiz_user`.`create_date`, `quiz_user`.`update_date` FROM `quiz_user` WHERE `quiz_user`.`user_name` = 'ユーザ4'
+2019-12-01T11:57:46.637452Z	   16 Query	ROLLBACK TO SAVEPOINT `s140663571455304_x9`
+2019-12-01T11:57:46.645692Z	   16 Query	RELEASE SAVEPOINT `s140663571455304_x9`
+2019-12-01T11:57:46.646591Z	   16 Query	ROLLBACK
+2019-12-01T11:57:46.647616Z	   16 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.648091Z	   16 Quit	
+2019-12-01T11:57:46.649665Z	   17 Connect	root@personality_analysis_quiz_1.personality_analysis_default on  using TCP/IP
+2019-12-01T11:57:46.650152Z	   17 Query	SET AUTOCOMMIT = 0
+2019-12-01T11:57:46.650538Z	   17 Query	SET AUTOCOMMIT = 1
+2019-12-01T11:57:46.650961Z	   17 Query	SELECT @@SQL_AUTO_IS_NULL
+2019-12-01T11:57:46.651391Z	   17 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T11:57:46.651768Z	   17 Query	DROP DATABASE `test_quiz`
+2019-12-01T12:00:07.319282Z	   18 Connect	root@personality_analysis_quiz_1.personality_analysis_default on quiz using TCP/IP
+2019-12-01T12:00:07.319777Z	   18 Query	SET AUTOCOMMIT = 0
+2019-12-01T12:00:07.320266Z	   18 Query	SET AUTOCOMMIT = 1
+2019-12-01T12:00:07.320737Z	   18 Query	SELECT @@SQL_AUTO_IS_NULL
+2019-12-01T12:00:07.321300Z	   18 Query	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED
+2019-12-01T12:00:07.321769Z	   18 Query	SHOW FULL TABLES
+2019-12-01T12:00:07.323852Z	   18 Query	SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`
+2019-12-01T12:00:07.363559Z	   18 Quit	

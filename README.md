@@ -5,8 +5,6 @@
 
 下記コマンドでdocker起動
 
-`cd docker`
-
 `docker-compose up -d`
 
 コンテナに入り、サーバー起動

@@ -1,0 +1,391 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Swagger Petstore"
+host: "petstore.swagger.io"
+basePath: "/v2"
+tags:
+- name: "groups"
+- name: "users"
+- name: "questions"
+schemes:
+- "https"
+- "http"
+paths:
+  /groups:
+    get:
+      tags:
+      - "groups"
+      summary: 問題種別取得
+      description: トップ画面表示時に実行する。
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/get_groups"
+    post:
+      tags:
+      - "groups"
+      summary: 問題種別登録
+      description: 問題登録画面で使用する？
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/post_groups"
+  /users:
+    get:
+      tags:
+      - "users"
+      summary: 全ユーザ取得
+      description:
+        全ユーザを取得する
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            type: 'array'
+            items:
+              $ref: "#/definitions/get_user"
+      responses:
+        204:
+          description: "OK"
+    post:
+      tags:
+      - "users"
+      summary: ユーザ登録
+      description:
+        ユーザ登録する
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/post_user"
+      responses:
+        204:
+          description: "OK"
+  /users/{id}:
+    get:
+      tags:
+      - "users"
+      summary: ユーザ情報取得
+      description: ログイン後に実行。ユーザ名を表示などに使用する。
+      parameters: 
+        - in: "path"
+          name: "id"
+          type: "string"
+          required: true
+          description: ユーザID
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/get_user"
+  /users/{id}/current_answers_rate:
+    get:
+      tags:
+      - "users"
+      summary: 正答率取得
+      description:
+        これまでの合計の正答率、挑戦ごとの正答率を取得する。
+      parameters: 
+        - in: "path"
+          name: "id"
+          type: "string"
+          required: true
+          description: ユーザID
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/get_answer"
+  /users/{id}/answers:
+    post:
+      tags:
+      - "users"
+      summary: 回答登録
+      description: 回答した時に登録
+      parameters: 
+        - in: "path"
+          name: "id"
+          type: "string"
+          required: true
+          description: ユーザID
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/post_answer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/check_result"
+  /questions:
+    get:
+      tags:
+      - "questions"
+      summary: "問題をランダム取得"
+      parameters:
+      - in: "query"
+        name: "group_id"
+        type: "string"
+        required: true
+        description: "指定したグループの問題を取得"
+      - in: "query"
+        name: "degree"
+        type: "integer"
+        required: true
+        description: "問題の難易度。1:やさしい、2:普通、3:難しい"
+        enum:
+         - 1
+         - 2
+         - 3
+      - in: "query"
+        name: "limit"
+        type: "string"
+        description: "指定した数の問題を取得"
+        default: 1
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/get_question"
+        404:
+          description: "not found"
+        405:
+          description: "Validation exception"
+    post:
+      tags:
+      - "questions"
+      summary: "問題登録"
+      description: "問題登録画面で使用する"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/post_question"
+      responses:
+        200:
+          description: "OK"
+        405:
+          description: "Invalid input"
+  /questions/{question_id}:
+    put:
+      tags:
+      - "questions"
+      summary: "問題更新（TBD）"
+      parameters:
+      - in: path
+        name: "question_id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/put_question"
+      responses:
+        200:
+          description: "OK"
+        405:
+          description: "Invalid input"
+    delete:
+      tags:
+      - "questions"
+      summary: "問題削除"
+      parameters:
+      - in: path
+        name: "question_id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+        404:
+          description: "not found"
+        405:
+          description: "Invalid input"
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  get_groups:
+    type: "object"
+    properties:
+      groups_id:
+        type: "string"
+        example: a2873018-72e9-46de-83da-d59a9b62b058
+      group_name:
+        type: "string"
+        example: "なぞなぞ"
+  post_groups:
+    type: "object"
+    properties:
+      group_name:
+        type: "string"
+        example: "なぞなぞ"
+  get_question:
+    type: "object"
+    properties:
+      question_id:
+        type: "string"
+      group_id:
+        type: "string"
+      user_id:
+        type: "string"
+      question_type:
+        type: "string"
+        description: select=選択形式、input=記述
+        example: "select"
+        enum: 
+          - "select"
+          - "input"
+      degree:
+        type: integer
+        description: 難易度。1=易しい、2=普通、3=難しい
+        enum: 
+          - 1
+          - 2
+          - 3
+      question:
+        type: "string"
+      shape_path:
+        type: "string"
+      correct:
+        type: "string"
+        description: 問題の回答。4択の場合は"1","2","3","4"
+      choice_1:
+        type: "string"
+      choice_2:
+        type: "string"
+      choice_3:
+        type: "string"
+      choice_4:
+        type: "string"
+  post_question:
+    type: "object"
+    properties:
+      group_id:
+        type: "string"
+      user_id:
+        type: "string"
+      question_type:
+        type: "string"
+      question:
+        type: "string"
+      shape_path:
+        type: "string"
+      correct:
+        type: "string"
+      choice_1:
+        type: "string"
+      choice_2:
+        type: "string"
+      choice_3:
+        type: "string"
+      choice_4:
+        type: "string"
+  put_question:
+    type: "object"
+    properties:
+      question:
+        type: "string"
+      q_detail:
+        type: "string"
+      sort_cd:
+        type: "string"
+      group_cd:
+        type: "string"
+      update_date:
+        type: "string"
+  get_user:
+    type: "object"
+    properties:
+      user_id:
+        type: "string"
+        example: "aoki"
+      user_name:
+        type: "string"
+        example: "佐藤"
+      mail_address:
+        type: "string"
+        example: "aaa@gmail.com"
+      authority:
+        type: "boolean"
+        example: False
+        default: False
+      correct_answer_rate:
+        description: 正答率(挑戦したことない場合はnull)
+        type: "integer"
+        example: null
+  post_user:
+    type: "object"
+    properties:
+      user_name:
+        type: "string"
+        example: "佐藤"
+      mail_address:
+        type: "string"
+        example: "aaa@gmail.com"
+  get_answer:
+    properties:
+      correct_answer_rate:
+        type: "integer"
+        example: 0.5
+      detail:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            challenge_count:
+              type: "integer"
+              example: 1
+              description: チャレンジ回数
+            correct_answer_rate:
+              type: "integer"
+              example: 0.3
+              description: 回答率
+            group_id:
+              type: "string"
+              example: a2873018-72e9-46de-83da-d59a9b62b058
+              description:
+                正否
+  post_answer:
+    properties:
+      question_id:
+        type: "integer"
+        example: 1
+      group_id:
+        type: "string"
+        example: a2873018-72e9-46de-83da-d59a9b62b058
+      answer:
+        type: "string"
+        example: "1"
+      is_correct:
+        type: "boolean"
+      challenge_count:
+        type: "integer"
+        example: 1
+  check_result:
+    properties:
+      result:
+        type: "boolean"
+        description: 結果
+        example: true
