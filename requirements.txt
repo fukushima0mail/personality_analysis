@@ -2,7 +2,6 @@ astroid==2.2.5
 beautifulsoup4==4.8.1
 cffi==1.13.2
 colorama==0.4.1
-cryptography==2.8
 Django==2.1
 django-cors-headers==3.1.1
 django-filter==2.1.0
@@ -11,9 +10,9 @@ djangorestframework-jwt==1.11.0
 isort==4.3.19
 lazy-object-proxy==1.4.1
 mccabe==0.6.1
-numpy==1.17.2
-pandas==0.25.1
+numpy==1.17.4
 pycparser==2.19
+pandas==0.25.1
 Pygments==2.4.0
 PyJWT==1.7.1
 pylint==2.3.1

@@ -105,8 +105,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'quiz',  # 作成したデータベース名
         'USER': 'root',  # ログインユーザー名
-        'PASSWORD': 'kojimatomoki',
-        'HOST': '127.0.0.1',
+        'PASSWORD': 'password',
+        'HOST': 'db',
         'PORT': '3306',
     }
 }
