@@ -2,3 +2,4 @@ myvenv
 *.pyc
 __pycache__
 .idea/
+*.log
