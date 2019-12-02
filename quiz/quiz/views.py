@@ -60,9 +60,8 @@ class SelectUserView(APIView):
 
     def get(self, request, user_id):
         """ユーザ情報取得"""
-        try:
-            val = User.objects.get(user_id=user_id, is_deleted=False)
-        except User.DoesNotExist:
+        val = User.objects.get(user_id=user_id, is_deleted=False)
+        if not val.exists():
             raise NotFound(detail="The target record is not found.")
 
         res = dict()
@@ -86,11 +85,10 @@ class SelectUserCurrentAnswerRateView(APIView):
         data = GetUserAnswerValidateSerializer(data=param)
         data.is_valid(raise_exception=True)
 
-        try:
-            answers = Answer.objects.filter(
-                **data.validated_data, is_deleted=False).order_by('challenge_count').values(
-                'group_id', 'is_correct', 'challenge_count')
-        except Answer.DoesNotExist:
+        answers = Answer.objects.filter(
+            **data.validated_data, is_deleted=False).order_by('challenge_count').values(
+            'group_id', 'is_correct', 'challenge_count')
+        if not answers.exists():
             raise NotFound(detail="The target record is not found.")
 
         res = self._Make_response(answers)
@@ -103,7 +101,7 @@ class SelectUserCurrentAnswerRateView(APIView):
         response['correct_answer_rate'] = df['is_correct'].mean()
 
         average_per_count = df.groupby('challenge_count').mean().to_dict().get('is_correct')
-        print('average_per_count={}'.format(average_per_count))
+        # print('average_per_count={}'.format(average_per_count))
         count = 1
         detail_list = list()
         while True:
@@ -114,9 +112,9 @@ class SelectUserCurrentAnswerRateView(APIView):
             detail = dict()
             detail['challenge_count'] = count
             detail['correct_answer_rate'] = float(correct_answer_rate)
-            print("df[df['challenge_count'] == count]")
-            print(df[df['challenge_count'] == count])
-            print('df = {}'.format(df))
+            # print("df[df['challenge_count'] == count]")
+            # print(df[df['challenge_count'] == count])
+            # print('df = {}'.format(df))
             detail['group_id'] = list(df[df['challenge_count'] == count].get('group_id').to_dict().values()).pop()
             detail_list.append(detail)
             count += 1
@@ -173,12 +171,12 @@ class QuestionView(APIView):
             'question_id', 'group_id', 'user_id', 'question_type', 'question',
             'shape_path', 'correct', 'choice_1', 'choice_2', 'choice_3', 'choice_4'
         )
-        if query.count() < int(limit):
-            limit = query.count()
+        if query.count() < data.validated_data['limit']:
+            data.validated_data['limit'] = query.count()
         if not query.exists():
             raise NotFound(detail="The target record is not found.")
 
-        response = random.sample(list(query), int(limit))
+        response = random.sample(list(query), data.validated_data['limit'])
         return Response(response)
 
     def post(self, request):

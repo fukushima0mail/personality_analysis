@@ -36,6 +36,19 @@ class TestGroup(TestCase):
         self.assertEqual(type(datetime.datetime.today()), type(record1['create_date']))
         self.assertEqual(type(datetime.datetime.today()), type(record1['update_date']))
 
+
+    def test_get_group_not_found(self):
+        """GETの異常系(レコードが存在しない場合)"""
+        Group.objects.all().delete()
+
+        request = factory.get('/groups')
+        get_groups = GroupView.as_view()
+        response = get_groups(request)
+        data = response.data.values()
+
+        self.assertEqual(response.status_code, 404)
+
+
     def test_post_group_success(self):
         """POST正常系"""
 
@@ -53,6 +66,30 @@ class TestGroup(TestCase):
         self.assertEqual(False, obj.is_deleted)
         self.assertEqual(type(datetime.datetime.today()), type(obj.create_date))
         self.assertEqual(type(datetime.datetime.today()), type(obj.update_date))
+
+    def test_post_group_error_body(self):
+        """POST異常系(param不正)"""
+
+        body = {
+            'test': 'test'
+        }
+        request = factory.post('/groups', data=body, format='json')
+        post_groups = GroupView.as_view()
+        response = post_groups(request)
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_post_group_duplicate(self):
+        """POST異常系(group_nameが重複)"""
+
+        body = {
+            'group_name': '名前1'
+        }
+        request = factory.post('/groups', data=body, format='json')
+        post_groups = GroupView.as_view()
+        response = post_groups(request)
+
+        self.assertEqual(response.status_code, 400)
 
 
 class TestUser(TestCase):
@@ -82,6 +119,16 @@ class TestUser(TestCase):
         self.assertEqual(type(datetime.datetime.today()), type(record1['create_date']))
         self.assertEqual(type(datetime.datetime.today()), type(record1['update_date']))
 
+    def test_get_user_not_found(self):
+        """GETの異常系(not found)"""
+        User.objects.all().delete()
+
+        request = factory.get('/users')
+        get_users = UserView.as_view()
+        response = get_users(request)
+
+        self.assertEqual(response.status_code, 404)
+
     def test_post_user_success(self):
         """POST正常系"""
         body = {
@@ -103,6 +150,54 @@ class TestUser(TestCase):
         self.assertEqual(False, obj.is_deleted)
         self.assertEqual(type(datetime.datetime.today()), type(obj.create_date))
         self.assertEqual(type(datetime.datetime.today()), type(obj.update_date))
+
+    def test_post_user_user_name_not_exist(self):
+        """POST異常系(bodyにuser_nameが存在しない)"""
+        body = {
+            'mail_address': 'aiu4@mail.com'
+        }
+
+        request = factory.post('/users', data=body, format='json')
+        post_user = UserView.as_view()
+        response = post_user(request)
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_post_user_mail_address_not_exist(self):
+        """POST異常系(bodyにmail_addressが存在しない)"""
+        body = {
+            'user_name': 'ユーザ4',
+        }
+
+        request = factory.post('/users', data=body, format='json')
+        post_user = UserView.as_view()
+        response = post_user(request)
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_post_user_duplicate(self):
+        """POST異常系(ユーザ名重複、メールアドレス重複)"""
+        body = {
+            'user_name': 'ユーザ1',
+            'mail_address': 'aiu@mail.com'
+        }
+
+        request = factory.post('/users', data=body, format='json')
+        post_user = UserView.as_view()
+        response = post_user(request)
+
+        self.assertEqual(response.status_code, 400)
+
+        body = {
+            'user_name': 'ユーザ5',
+            'mail_address': 'aiu1@mail.com'
+        }
+
+        request = factory.post('/users', data=body, format='json')
+        post_user = UserView.as_view()
+        response = post_user(request)
+
+        self.assertEqual(response.status_code, 400)
 
 
 class TestSelectUser(TestCase):
@@ -136,6 +231,18 @@ class TestSelectUser(TestCase):
         self.assertEqual(type(datetime.datetime.today()), type(record['create_date']))
         self.assertEqual(type(datetime.datetime.today()), type(record['update_date']))
 
+    def test_get_user_not_found(self):
+        """GETの異常系(not found)"""
+
+        obj = User.objects.get(user_name='ユーザ3')
+        User.objects.all().delete()
+
+        request = factory.get('/users/{}'.format(obj.user_id))
+        get_users = UserView.as_view()
+        response = get_users(request)
+
+        self.assertEqual(response.status_code, 404)
+
 
 class TestSelectUserCurrentAnswerRate(TestCase):
     """SelectUserCurrentAnswerRateテスト"""
@@ -152,6 +259,7 @@ class TestSelectUserCurrentAnswerRate(TestCase):
 
         user = User.objects.get(user_name='ユーザ1')
         group = Group.objects.get(group_name='名前2')
+        group2 = Group.objects.get(group_name='名前3')
         Question.objects.create(
             group_id=group.group_id,
             user_id=user.user_id,
@@ -211,6 +319,16 @@ class TestSelectUserCurrentAnswerRate(TestCase):
             challenge_count=1,
             is_deleted=True
         )
+        Answer.objects.create(
+            user_id=user.user_id,
+            question_id=question.question_id,
+            group_id=group2.group_id,
+            answer=1,
+            is_correct=True,
+            challenge_count=3,
+            is_deleted=False
+        )
+
 
     def test_get_user_success(self):
         """GETの正常系"""
@@ -235,6 +353,45 @@ class TestSelectUserCurrentAnswerRate(TestCase):
         self.assertEqual(0.5, detail[1].get('correct_answer_rate'))
         self.assertEqual(group.group_id, detail[1].get('group_id'))
 
+    def test_get_user_success(self):
+        """GETの正常系(group_id無し)"""
+        user = User.objects.get(user_name='ユーザ1')
+        group = Group.objects.get(group_name='名前2')
+        group2 = Group.objects.get(group_name='名前3')
+
+        request = factory.get('/users/{}/current_answers_rate'.format(user.user_id))
+
+        get_answers = SelectUserCurrentAnswerRateView.as_view()
+        response = get_answers(request, user.user_id)
+        data = response.data
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(data.get('correct_answer_rate'), 0.8)
+        detail = data.get('detail')
+        self.assertEqual(len(detail), 3)
+        self.assertEqual(1, detail[0].get('challenge_count'))
+        self.assertEqual(1, detail[0].get('correct_answer_rate'))
+        self.assertEqual(group.group_id, detail[0].get('group_id'))
+        self.assertEqual(2, detail[1].get('challenge_count'))
+        self.assertEqual(0.5, detail[1].get('correct_answer_rate'))
+        self.assertEqual(group.group_id, detail[1].get('group_id'))
+        self.assertEqual(3, detail[2].get('challenge_count'))
+        self.assertEqual(1, detail[2].get('correct_answer_rate'))
+        self.assertEqual(group2.group_id, detail[2].get('group_id'))
+
+    def test_get_user_not_found(self):
+        """GETの異常系(not found)"""
+        user = User.objects.get(user_name='ユーザ1')
+        group = Group.objects.get(group_name='名前2')
+
+        User.objects.all().delete()
+        request = factory.get('/users/{}/current_answers_rate'.format(user.user_id),
+                              data=dict(group_id=group.group_id))
+
+        get_answers = SelectUserCurrentAnswerRateView.as_view()
+        response = get_answers(request, user.user_id)
+
+        self.assertEqual(response.status_code, 404)
 
 class TestSelectUserAnswer(TestCase):
     """SelectUserAnswerテスト"""
@@ -264,8 +421,8 @@ class TestSelectUserAnswer(TestCase):
             degree=1
         )
 
-    def test_post_user_answer_success(self):
-        """POST正常系"""
+    def test_post_user_answer_success_true(self):
+        """POST正常系(resultがtrue)"""
         user = User.objects.get(user_name='ユーザ1')
         group = Group.objects.get(group_name='名前3')
         question = Question.objects.get()
@@ -273,7 +430,6 @@ class TestSelectUserAnswer(TestCase):
             question_id=question.question_id,
             group_id=group.group_id,
             answer='1',
-            is_correct=True,
             challenge_count=1
         )
 
@@ -294,6 +450,51 @@ class TestSelectUserAnswer(TestCase):
         self.assertEqual(type(datetime.datetime.today()), type(record.create_date))
         self.assertEqual(type(datetime.datetime.today()), type(record.update_date))
 
+    def test_post_user_answer_success_false(self):
+        """POST正常系(resultがfalse)"""
+        user = User.objects.get(user_name='ユーザ1')
+        group = Group.objects.get(group_name='名前3')
+        question = Question.objects.get()
+        body = dict(
+            question_id=question.question_id,
+            group_id=group.group_id,
+            answer='2',
+            challenge_count=1
+        )
+
+        request = factory.post('/users/{}/answers'.format(user.user_id), data=body, format='json')
+        post_user = SelectUserAnswerView.as_view()
+        response = post_user(request, user.user_id)
+        self.assertEqual(200, response.status_code)
+        data = response.data
+        self.assertEqual(data.get('result'), False)
+        record = Answer.objects.get(answer='2', group_id=group.group_id)
+        self.assertTrue(re.match(UUID_PATTERN, str(record.answer_id)))
+        self.assertEqual(user.user_id, record.user_id)
+        self.assertEqual(group.group_id, record.group_id)
+        self.assertEqual(question.question_id, record.question_id)
+        self.assertEqual('2', record.answer)
+        self.assertEqual(1, record.challenge_count)
+        self.assertEqual(False, record.is_deleted)
+        self.assertEqual(type(datetime.datetime.today()), type(record.create_date))
+        self.assertEqual(type(datetime.datetime.today()), type(record.update_date))
+
+
+    def test_post_user_answer_body_error(self):
+        """POST異常系(body不正(challenge_countが存在しない))"""
+        user = User.objects.get(user_name='ユーザ1')
+        group = Group.objects.get(group_name='名前3')
+        question = Question.objects.get()
+        body = dict(
+            question_id=question.question_id,
+            group_id=group.group_id,
+            answer='1'
+        )
+
+        request = factory.post('/users/{}/answers'.format(user.user_id), data=body, format='json')
+        post_user = SelectUserAnswerView.as_view()
+        response = post_user(request, user.user_id)
+        self.assertEqual(400, response.status_code)
 
 class TestQuestion(TestCase):
     """Questionテスト"""
@@ -420,6 +621,46 @@ class TestQuestion(TestCase):
             val2 += q
         self.assertNotEqual(val1, val2)
 
+    def test_get_question_limit_not_exist(self):
+        """GETの正常系(limit無し)"""
+        group = Group.objects.get(group_name='名前1')
+        request = factory.get('/questions', data=dict(group_id=group.group_id, degree=1))
+        get_questions = QuestionView.as_view()
+        response = get_questions(request)
+        data = response.data
+
+        self.assertEqual(200, response.status_code)
+        self.assertEqual(4, len(data))
+
+    def test_get_question_not_found(self):
+        """GETの異常系"""
+        Question.objects.all().delete()
+
+        group = Group.objects.get(group_name='名前1')
+        request = factory.get('/questions', data=dict(group_id=group.group_id, degree=1, limit=3))
+        get_questions = QuestionView.as_view()
+        response = get_questions(request)
+
+        self.assertEqual(400, response.status_code)
+
+    def test_get_question_degree_not_exist(self):
+        """GETの異常系(degree無し)"""
+        group = Group.objects.get(group_name='名前1')
+        request = factory.get('/questions', data=dict(group_id=group.group_id))
+        get_questions = QuestionView.as_view()
+        response = get_questions(request)
+
+        self.assertEqual(400, response.status_code)
+
+    def test_get_question_group_id_not_exist(self):
+        """GETの異常系(degree無し)"""
+        request = factory.get('/questions', data=dict(degree=1))
+        get_questions = QuestionView.as_view()
+        response = get_questions(request)
+
+        self.assertEqual(400, response.status_code)
+
+
     def test_post_question_success(self):
         """POST正常系"""
         user = User.objects.get(user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
@@ -455,3 +696,25 @@ class TestQuestion(TestCase):
         self.assertEqual(False, obj.is_deleted)
         self.assertEqual(type(datetime.datetime.today()), type(obj.create_date))
         self.assertEqual(type(datetime.datetime.today()), type(obj.update_date))
+
+    def test_post_question_body_error(self):
+        """POST異常系(body不正)"""
+        user = User.objects.get(user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
+        group = Group.objects.get(group_name='名前1', is_deleted=False)
+
+        body = dict(
+            group_id=group.group_id,
+            user_id=user.user_id,
+            question_type='select',
+            question='問題10',
+            correct=1,
+            choice_1='a',
+            choice_2='b',
+            choice_3='c',
+            choice_4='d'
+        )
+
+        request = factory.post('/questions', data=body, format='json')
+        post_question = QuestionView.as_view()
+        response = post_question(request)
+        self.assertEqual(response.status_code, 400)

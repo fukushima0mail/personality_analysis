@@ -63,11 +63,6 @@ class GetQuestionValidateSerializer(serializers.Serializer):
             raise ValidationError(detail="group_id is not found. group_id={}".format(value))
         return value
 
-    def validate_limit(self, value):
-        if value > Question.objects.all().count():
-            raise ValidationError(detail="limit is over. limit={}".format(value))
-        return value
-
 
 class RegisterQuestionValidateSerializer(serializers.ModelSerializer):
     """問題登録用シリアライザー"""

@@ -33,11 +33,6 @@ python manage.py migrate
 exec_sql './testdata/quiz_user_insdata.sql'
 exec_sql './testdata/quiz_group_insdata.sql'
 exec_sql './testdata/quiz_question_insdata.sql'
-#exec_sql 'insert into quiz_user
-#(user_id,user_name,mail_address,authority,is_deleted,create_date,update_date)
-#values
-#("78cca1a7720b4298b5fed84e0b813173","テストユーザ1","aaa@xxx.jp","0","0","2019/11/23","2019/11/23")
-#;'
 
 # サーバ起動
 python
