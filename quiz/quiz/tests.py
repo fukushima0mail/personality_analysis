@@ -4,7 +4,7 @@ from django.test import TestCase
 from rest_framework.test import APIRequestFactory
 
 from quiz.models import Group, User, Answer, Question
-from quiz.views import GroupView, UserView, SelectUserAnswerView, QuestionView, SelectUserCurrentAnswerRateView
+from quiz.views import GroupView, UserView, SelectUserAnswerView, QuestionView, SelectUserRecordView
 
 factory = APIRequestFactory()
 UUID_PATTERN = '[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}'
@@ -329,55 +329,39 @@ class TestSelectUserCurrentAnswerRate(TestCase):
             is_deleted=False
         )
 
-
     def test_get_user_success(self):
         """GETの正常系"""
-        user = User.objects.get(user_name='ユーザ1')
-        group = Group.objects.get(group_name='名前2')
-
-        request = factory.get('/users/{}/current_answers_rate'.format(user.user_id),
-                              data=dict(group_id=group.group_id))
-
-        get_answers = SelectUserCurrentAnswerRateView.as_view()
-        response = get_answers(request, user.user_id)
-        data = response.data
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data.get('correct_answer_rate'), 0.75)
-        detail = data.get('detail')
-        self.assertEqual(len(detail), 2)
-        self.assertEqual(1, detail[0].get('challenge_count'))
-        self.assertEqual(1, detail[0].get('correct_answer_rate'))
-        self.assertEqual(group.group_id, detail[0].get('group_id'))
-        self.assertEqual(2, detail[1].get('challenge_count'))
-        self.assertEqual(0.5, detail[1].get('correct_answer_rate'))
-        self.assertEqual(group.group_id, detail[1].get('group_id'))
-
-    def test_get_user_success(self):
-        """GETの正常系(group_id無し)"""
         user = User.objects.get(user_name='ユーザ1')
         group = Group.objects.get(group_name='名前2')
         group2 = Group.objects.get(group_name='名前3')
 
         request = factory.get('/users/{}/current_answers_rate'.format(user.user_id))
 
-        get_answers = SelectUserCurrentAnswerRateView.as_view()
+        get_answers = SelectUserRecordView.as_view()
         response = get_answers(request, user.user_id)
         data = response.data
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data.get('correct_answer_rate'), 0.8)
+        self.assertEqual(200, response.status_code)
+        self.assertEqual(5, data.get('total_count'))
+        self.assertEqual(4, data.get('correct_answer_count'))
+        self.assertEqual(80.0, data.get('correct_answer_rate'))
         detail = data.get('detail')
         self.assertEqual(len(detail), 3)
         self.assertEqual(1, detail[0].get('challenge_count'))
-        self.assertEqual(1, detail[0].get('correct_answer_rate'))
-        self.assertEqual(group.group_id, detail[0].get('group_id'))
+        self.assertEqual(2, detail[0].get('total_count'))
+        self.assertEqual(2, detail[0].get('correct_answer_count'))
+        self.assertEqual(100.0, detail[0].get('correct_answer_rate'))
+        self.assertEqual(group.group_name, detail[0].get('group_name'))
         self.assertEqual(2, detail[1].get('challenge_count'))
-        self.assertEqual(0.5, detail[1].get('correct_answer_rate'))
-        self.assertEqual(group.group_id, detail[1].get('group_id'))
+        self.assertEqual(2, detail[1].get('total_count'))
+        self.assertEqual(1, detail[1].get('correct_answer_count'))
+        self.assertEqual(50.0, detail[1].get('correct_answer_rate'))
+        self.assertEqual(group.group_name, detail[1].get('group_name'))
         self.assertEqual(3, detail[2].get('challenge_count'))
-        self.assertEqual(1, detail[2].get('correct_answer_rate'))
-        self.assertEqual(group2.group_id, detail[2].get('group_id'))
+        self.assertEqual(1, detail[2].get('total_count'))
+        self.assertEqual(1, detail[2].get('correct_answer_count'))
+        self.assertEqual(100.0, detail[2].get('correct_answer_rate'))
+        self.assertEqual(group2.group_name, detail[2].get('group_name'))
 
     def test_get_user_not_found(self):
         """GETの異常系(not found)"""
@@ -388,7 +372,7 @@ class TestSelectUserCurrentAnswerRate(TestCase):
         request = factory.get('/users/{}/current_answers_rate'.format(user.user_id),
                               data=dict(group_id=group.group_id))
 
-        get_answers = SelectUserCurrentAnswerRateView.as_view()
+        get_answers = SelectUserRecordView.as_view()
         response = get_answers(request, user.user_id)
 
         self.assertEqual(response.status_code, 404)

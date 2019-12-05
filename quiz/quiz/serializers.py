@@ -34,7 +34,6 @@ class RegisterUserValidateSerializer(serializers.ModelSerializer):
 
 class GetUserAnswerValidateSerializer(serializers.Serializer):
     """指定したユーザの回答取得用シリアライザー"""
-    group_id = serializers.UUIDField(required=False)
     user_id = serializers.UUIDField(required=True)
 
 

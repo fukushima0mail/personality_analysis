@@ -85,14 +85,14 @@ paths:
           description: "OK"
           schema:
             $ref: "#/definitions/get_user"
-  /users/{id}/current_answers_rate:
+  /users/{id}/record:
     get:
       tags:
       - "users"
-      summary: 正答率取得
+      summary: 成績取得
       description:
         これまでの合計の正答率、挑戦ごとの正答率を取得する。
-      parameters: 
+      parameters:
         - in: "path"
           name: "id"
           type: "string"
@@ -102,14 +102,14 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/get_answer"
+            $ref: "#/definitions/get_record"
   /users/{id}/answers:
     post:
       tags:
       - "users"
       summary: 回答登録
       description: 回答した時に登録
-      parameters: 
+      parameters:
         - in: "path"
           name: "id"
           type: "string"
@@ -254,13 +254,13 @@ definitions:
         type: "string"
         description: select=選択形式、input=記述
         example: "select"
-        enum: 
+        enum:
           - "select"
           - "input"
       degree:
         type: integer
         description: 難易度。1=易しい、2=普通、3=難しい
-        enum: 
+        enum:
           - 1
           - 2
           - 3
@@ -344,11 +344,20 @@ definitions:
       mail_address:
         type: "string"
         example: "aaa@gmail.com"
-  get_answer:
+  get_record:
     properties:
+      total_count:
+        type: "integer"
+        example: 1
+        description: 回答数
+      correct_answer_count:
+        type: "integer"
+        example: 0.5
+        description: 正解数
       correct_answer_rate:
         type: "integer"
         example: 0.5
+        description: 正答率
       detail:
         type: "array"
         items:
@@ -358,15 +367,22 @@ definitions:
               type: "integer"
               example: 1
               description: チャレンジ回数
+            total_count:
+              type: "integer"
+              example: 1
+              description: 回答数
+            correct_answer_count:
+              type: "integer"
+              example: 0.5
+              description: 正解数
             correct_answer_rate:
               type: "integer"
               example: 0.3
-              description: 回答率
-            group_id:
+              description: 正答率
+            group_name:
               type: "string"
-              example: a2873018-72e9-46de-83da-d59a9b62b058
-              description:
-                正否
+              example: 一般常識
+              description: 問題種別
   post_answer:
     properties:
       question_id:

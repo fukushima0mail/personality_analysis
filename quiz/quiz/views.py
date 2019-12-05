@@ -12,6 +12,8 @@ import json
 import pandas
 import random
 
+TO_PERCENTAGE = 100
+NUMBER_OF_DIGITS = 3
 
 class GroupView(APIView):
     """/group"""
@@ -73,21 +75,19 @@ class SelectUserView(APIView):
         return Response(res)
 
 
-class SelectUserCurrentAnswerRateView(APIView):
-    """/users/{id}/current_answers_rate"""
+class SelectUserRecordView(APIView):
+    """/users/{id}/record"""
 
     def get(self, request, user_id):
-        """指定したユーザの回答率を取得"""
+        """指定したユーザの成績を取得"""
         param = dict(user_id=user_id)
-        if request.GET.get('group_id'):
-            param['group_id'] = request.GET.get('group_id')
 
         data = GetUserAnswerValidateSerializer(data=param)
         data.is_valid(raise_exception=True)
 
         answers = Answer.objects.filter(
-            **data.validated_data, is_deleted=False).order_by('challenge_count').values(
-            'group_id', 'is_correct', 'challenge_count')
+            **data.validated_data, is_deleted=False).select_related('group').order_by('challenge_count').values(
+            'group__group_name', 'is_correct', 'challenge_count')
         if not answers.exists():
             raise NotFound(detail="The target record is not found.")
 
@@ -96,26 +96,32 @@ class SelectUserCurrentAnswerRateView(APIView):
 
     def _Make_response(self, answers):
         df = pandas.DataFrame(answers)
-
         response = OrderedDict()
-        response['correct_answer_rate'] = df['is_correct'].mean()
+        response['total_count'] = df['is_correct'].count()
+        response['correct_answer_count'] = df['is_correct'].sum()
+        response['correct_answer_rate'] = round(df['is_correct'].mean(), NUMBER_OF_DIGITS) * TO_PERCENTAGE
 
-        average_per_count = df.groupby('challenge_count').mean().to_dict().get('is_correct')
-        # print('average_per_count={}'.format(average_per_count))
+        correct_answer_rates = df.groupby('challenge_count').mean().to_dict().get('is_correct')
+        correct_answer_counts = df.groupby('challenge_count').sum().to_dict().get('is_correct')
+        total_counts = df.groupby('challenge_count').count().to_dict().get('is_correct')
+
         count = 1
         detail_list = list()
         while True:
-            # チャレンジ回数ごとの平均点を計算する
-            correct_answer_rate = average_per_count.get(count, None)
+            # チャレンジ回数ごとの問題数、正解数、平均正解率を計算する
+            correct_answer_rate = correct_answer_rates.get(count, None)
+            correct_answer_count = correct_answer_counts.get(count, None)
+            total_count = total_counts.get(count, None)
+
             if correct_answer_rate is None:
                 break
             detail = dict()
             detail['challenge_count'] = count
-            detail['correct_answer_rate'] = float(correct_answer_rate)
-            # print("df[df['challenge_count'] == count]")
-            # print(df[df['challenge_count'] == count])
-            # print('df = {}'.format(df))
-            detail['group_id'] = list(df[df['challenge_count'] == count].get('group_id').to_dict().values()).pop()
+            detail['total_count'] = total_count
+            detail['correct_answer_count'] = int(correct_answer_count)
+            detail['correct_answer_rate'] = round(correct_answer_rate, NUMBER_OF_DIGITS) * TO_PERCENTAGE
+            detail['correct_answer_rate2'] = correct_answer_rate
+            detail['group_name'] = list(df[df['challenge_count'] == count].get('group__group_name').to_dict().values()).pop()
             detail_list.append(detail)
             count += 1
 
