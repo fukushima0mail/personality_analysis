@@ -120,7 +120,6 @@ class SelectUserRecordView(APIView):
             detail['total_count'] = total_count
             detail['correct_answer_count'] = int(correct_answer_count)
             detail['correct_answer_rate'] = round(correct_answer_rate, NUMBER_OF_DIGITS) * TO_PERCENTAGE
-            detail['correct_answer_rate2'] = correct_answer_rate
             detail['group_name'] = list(df[df['challenge_count'] == count].get('group__group_name').to_dict().values()).pop()
             detail_list.append(detail)
             count += 1
