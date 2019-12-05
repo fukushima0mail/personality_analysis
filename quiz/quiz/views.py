@@ -100,6 +100,7 @@ class SelectUserRecordView(APIView):
         response['total_count'] = df['is_correct'].count()
         response['correct_answer_count'] = df['is_correct'].sum()
         response['correct_answer_rate'] = round(df['is_correct'].mean(), NUMBER_OF_DIGITS) * TO_PERCENTAGE
+        response['correct_answer_rate'] = '%.1f' % (round(df['is_correct'].mean(), NUMBER_OF_DIGITS) * TO_PERCENTAGE)
 
         correct_answer_rates = df.groupby('challenge_count').mean().to_dict().get('is_correct')
         correct_answer_counts = df.groupby('challenge_count').sum().to_dict().get('is_correct')
@@ -120,6 +121,7 @@ class SelectUserRecordView(APIView):
             detail['total_count'] = total_count
             detail['correct_answer_count'] = int(correct_answer_count)
             detail['correct_answer_rate'] = round(correct_answer_rate, NUMBER_OF_DIGITS) * TO_PERCENTAGE
+            detail['correct_answer_rate'] = '%.1f' % (round(correct_answer_rate, NUMBER_OF_DIGITS) * TO_PERCENTAGE)
             detail['group_name'] = list(df[df['challenge_count'] == count].get('group__group_name').to_dict().values()).pop()
             detail_list.append(detail)
             count += 1
