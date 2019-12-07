@@ -32,9 +32,9 @@ class RegisterUserValidateSerializer(serializers.ModelSerializer):
         )
 
 
-class GetUserAnswerValidateSerializer(serializers.Serializer):
-    """指定したユーザの回答取得用シリアライザー"""
-    user_id = serializers.UUIDField(required=True)
+class GetUserValidateSerializer(serializers.Serializer):
+    """指定したユーザのシリアライザー"""
+    user_id = serializers.CharField(max_length=28)
 
 
 class RegisterUserAnswerValidateSerializer(serializers.ModelSerializer):

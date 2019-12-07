@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import NotFound, APIException
 from .models import Group, User, Answer, Question
-from .serializers import GetUserAnswerValidateSerializer, RegisterUserAnswerValidateSerializer, \
+from .serializers import GetUserValidateSerializer, RegisterUserAnswerValidateSerializer, \
     GetQuestionValidateSerializer, RegisterGroupValidateSerializer, RegisterUserValidateSerializer, \
     RegisterQuestionValidateSerializer
 from django.http import HttpResponse
@@ -62,8 +62,14 @@ class SelectUserView(APIView):
 
     def get(self, request, user_id):
         """ユーザ情報取得"""
-        val = User.objects.get(user_id=user_id, is_deleted=False)
-        if not val.exists():
+        param = dict(user_id=user_id)
+
+        data = GetUserValidateSerializer(data=param)
+        data.is_valid(raise_exception=True)
+
+        try:
+            val = User.objects.get(**data.validated_data, is_deleted=False)
+        except User.DoesNotExist:
             raise NotFound(detail="The target record is not found.")
 
         res = dict()
@@ -71,7 +77,7 @@ class SelectUserView(APIView):
         res['user_name'] = val.user_name
         res['mail_address'] = val.mail_address
         res['authority'] = val.authority
-        res['correct_answer_rate'] = val.correct_answer_rate
+        res['challenge_count'] = val.challenge_count
         return Response(res)
 
 
@@ -82,7 +88,7 @@ class SelectUserRecordView(APIView):
         """指定したユーザの成績を取得"""
         param = dict(user_id=user_id)
 
-        data = GetUserAnswerValidateSerializer(data=param)
+        data = GetUserValidateSerializer(data=param)
         data.is_valid(raise_exception=True)
 
         answers = Answer.objects.filter(

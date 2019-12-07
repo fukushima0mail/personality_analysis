@@ -6,10 +6,11 @@ from rest_framework.compat import MinValueValidator, MaxValueValidator
 
 
 class User(models.Model):
-    user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, null=False)
+    user_id = models.CharField(primary_key=True, null=False, max_length=28)
     user_name = models.CharField(max_length=30, unique=True, null=False)
     mail_address = models.EmailField(unique=True, max_length=100, null=False)
     authority = models.BooleanField(max_length=5, default=False, null=False)
+    challenge_count = models.IntegerField(default=0, null=False)
     correct_answer_rate = models.FloatField(null=True)
     is_deleted = models.BooleanField(default=False, null=False)
     create_date = models.DateTimeField(default=timezone.now, null=False)

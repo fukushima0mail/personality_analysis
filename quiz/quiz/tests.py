@@ -97,9 +97,9 @@ class TestUser(TestCase):
 
     def setUp(self):
         """初期処理"""
-        User.objects.create(user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
-        User.objects.create(user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
-        User.objects.create(user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
+        User.objects.create(user_id="1"*28, user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
+        User.objects.create(user_id="2"*28, user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
+        User.objects.create(user_id="3"*28, user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
 
     def test_get_user_success(self):
         """GETの正常系"""
@@ -111,7 +111,7 @@ class TestUser(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(data), 2)
         record1 = data.get(user_name='ユーザ1')
-        self.assertTrue(re.match(UUID_PATTERN, str(record1['user_id'])))
+        self.assertTrue("1"*28, str(record1['user_id']))
         self.assertEqual('ユーザ1', record1['user_name'])
         self.assertEqual(False, record1['authority'])
         self.assertEqual(None, record1['correct_answer_rate'])
@@ -132,6 +132,7 @@ class TestUser(TestCase):
     def test_post_user_success(self):
         """POST正常系"""
         body = {
+            'user_id': "4" * 28,
             'user_name': 'ユーザ4',
             'mail_address': 'aiu4@mail.com'
         }
@@ -142,7 +143,7 @@ class TestUser(TestCase):
 
         obj = User.objects.get(user_name='ユーザ4')
         self.assertEqual(response.status_code, 204)
-        self.assertTrue(re.match(UUID_PATTERN, str(obj.user_id)))
+        self.assertTrue("4" * 28, str(obj.user_id))
         self.assertEqual('ユーザ4', obj.user_name)
         self.assertEqual('aiu4@mail.com', obj.mail_address)
         self.assertEqual(False, obj.authority)
@@ -205,9 +206,9 @@ class TestSelectUser(TestCase):
 
     def setUp(self):
         """初期処理"""
-        User.objects.create(user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
-        User.objects.create(user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
-        User.objects.create(user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
+        User.objects.create(user_id="1"*28, user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
+        User.objects.create(user_id="2"*28, user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
+        User.objects.create(user_id="3"*28, user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
 
     def test_get_user_success(self):
         """GETの正常系"""
@@ -222,14 +223,25 @@ class TestSelectUser(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(data), 2)
         record = data.get(user_name='ユーザ3')
-        self.assertTrue(re.match(UUID_PATTERN, str(record['user_id'])))
+        self.assertTrue("1" * 28, str(record['user_id']))
         self.assertEqual('ユーザ3', record['user_name'])
         self.assertEqual('aiu3@mail.com', record['mail_address'])
         self.assertEqual(False, record['authority'])
-        self.assertEqual(None, record['correct_answer_rate'])
+        self.assertEqual(0, record['challenge_count'])
         self.assertEqual(False, record['is_deleted'])
         self.assertEqual(type(datetime.datetime.today()), type(record['create_date']))
         self.assertEqual(type(datetime.datetime.today()), type(record['update_date']))
+
+    def test_get_user_bad_request(self):
+        """GETの異常系(bad request)"""
+
+        User.objects.all().delete()
+
+        request = factory.get('/users/{}'.format("1" * 29))
+        get_users = UserView.as_view()
+        response = get_users(request)
+
+        self.assertEqual(response.status_code, 404)
 
     def test_get_user_not_found(self):
         """GETの異常系(not found)"""
@@ -244,14 +256,14 @@ class TestSelectUser(TestCase):
         self.assertEqual(response.status_code, 404)
 
 
-class TestSelectUserCurrentAnswerRate(TestCase):
-    """SelectUserCurrentAnswerRateテスト"""
+class TestSelectUserRecord(TestCase):
+    """SelectUserRecordテスト"""
 
     def setUp(self):
         """初期処理"""
-        User.objects.create(user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
-        User.objects.create(user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
-        User.objects.create(user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
+        User.objects.create(user_id="1"*28, user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
+        User.objects.create(user_id="2"*28, user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
+        User.objects.create(user_id="3"*28, user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
 
         Group.objects.create(group_name='名前1', is_deleted=False)
         Group.objects.create(group_name='名前2', is_deleted=False)
@@ -335,7 +347,7 @@ class TestSelectUserCurrentAnswerRate(TestCase):
         group = Group.objects.get(group_name='名前2')
         group2 = Group.objects.get(group_name='名前3')
 
-        request = factory.get('/users/{}/current_answers_rate'.format(user.user_id))
+        request = factory.get('/users/{}/record'.format(user.user_id))
 
         get_answers = SelectUserRecordView.as_view()
         response = get_answers(request, user.user_id)
@@ -344,23 +356,23 @@ class TestSelectUserCurrentAnswerRate(TestCase):
         self.assertEqual(200, response.status_code)
         self.assertEqual(5, data.get('total_count'))
         self.assertEqual(4, data.get('correct_answer_count'))
-        self.assertEqual(80.0, data.get('correct_answer_rate'))
+        self.assertEqual('80.0', data.get('correct_answer_rate'))
         detail = data.get('detail')
         self.assertEqual(len(detail), 3)
         self.assertEqual(1, detail[0].get('challenge_count'))
         self.assertEqual(2, detail[0].get('total_count'))
         self.assertEqual(2, detail[0].get('correct_answer_count'))
-        self.assertEqual(100.0, detail[0].get('correct_answer_rate'))
+        self.assertEqual('100.0', detail[0].get('correct_answer_rate'))
         self.assertEqual(group.group_name, detail[0].get('group_name'))
         self.assertEqual(2, detail[1].get('challenge_count'))
         self.assertEqual(2, detail[1].get('total_count'))
         self.assertEqual(1, detail[1].get('correct_answer_count'))
-        self.assertEqual(50.0, detail[1].get('correct_answer_rate'))
+        self.assertEqual('50.0', detail[1].get('correct_answer_rate'))
         self.assertEqual(group.group_name, detail[1].get('group_name'))
         self.assertEqual(3, detail[2].get('challenge_count'))
         self.assertEqual(1, detail[2].get('total_count'))
         self.assertEqual(1, detail[2].get('correct_answer_count'))
-        self.assertEqual(100.0, detail[2].get('correct_answer_rate'))
+        self.assertEqual('100.0', detail[2].get('correct_answer_rate'))
         self.assertEqual(group2.group_name, detail[2].get('group_name'))
 
     def test_get_user_not_found(self):
@@ -382,9 +394,9 @@ class TestSelectUserAnswer(TestCase):
 
     def setUp(self):
         """初期処理"""
-        User.objects.create(user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
-        User.objects.create(user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
-        User.objects.create(user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
+        User.objects.create(user_id="1"*28, user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
+        User.objects.create(user_id="2"*28, user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
+        User.objects.create(user_id="3"*28, user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
 
         Group.objects.create(group_name='名前1', is_deleted=False)
         Group.objects.create(group_name='名前2', is_deleted=False)
@@ -485,9 +497,9 @@ class TestQuestion(TestCase):
 
     def setUp(self):
         """初期処理"""
-        User.objects.create(user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
-        User.objects.create(user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
-        User.objects.create(user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
+        User.objects.create(user_id="1"*28, user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
+        User.objects.create(user_id="2"*28, user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=True)
+        User.objects.create(user_id="3"*28, user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
 
         Group.objects.create(group_name='名前1', is_deleted=False)
         Group.objects.create(group_name='名前2', is_deleted=False)
@@ -670,7 +682,7 @@ class TestQuestion(TestCase):
 
         obj = Question.objects.get(question='問題10')
         self.assertTrue(re.match(UUID_PATTERN, str(obj.group_id)))
-        self.assertTrue(re.match(UUID_PATTERN, str(obj.user_id)))
+        self.assertEqual(user.user_id, obj.user_id)
         self.assertEqual('select', obj.question_type)
         self.assertEqual('1', obj.correct)
         self.assertEqual('a', obj.choice_1)
