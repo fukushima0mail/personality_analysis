@@ -6,7 +6,7 @@ from rest_framework.exceptions import NotFound, APIException
 from .models import Group, User, Answer, Question
 from .serializers import GetUserValidateSerializer, RegisterUserAnswerValidateSerializer, \
     GetQuestionValidateSerializer, RegisterGroupValidateSerializer, RegisterUserValidateSerializer, \
-    RegisterQuestionValidateSerializer
+    RegisterQuestionValidateSerializer, UpdateUserValidateSerializer
 from django.http import HttpResponse
 import json
 import pandas
@@ -80,6 +80,22 @@ class SelectUserView(APIView):
         res['challenge_count'] = val.challenge_count
         return Response(res)
 
+    def put(self, request, user_id):
+        """ユーザ情報更新"""
+
+        query_string = GetUserValidateSerializer(data=dict(user_id=user_id))
+        query_string.is_valid(raise_exception=True)
+
+        body = json.loads(request.body)
+        data = UpdateUserValidateSerializer(data=body)
+        data.is_valid(raise_exception=True)
+
+        try:
+            User.objects.filter(user_id=user_id).update(**data.validated_data)
+        except Exception as e:
+            raise APIException(e)
+
+        return HttpResponse(status=204)
 
 class SelectUserRecordView(APIView):
     """/users/{id}/record"""

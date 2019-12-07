@@ -31,6 +31,11 @@ class RegisterUserValidateSerializer(serializers.ModelSerializer):
             'mail_address'
         )
 
+class UpdateUserValidateSerializer(serializers.Serializer):
+    """ユーザ更新用シリアライザー"""
+    user_name = serializers.CharField(max_length=30, required=False)
+    challenge_count = serializers.IntegerField(required=False)
+
 
 class GetUserValidateSerializer(serializers.Serializer):
     """指定したユーザのシリアライザー"""
