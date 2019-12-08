@@ -85,3 +85,14 @@ class RegisterQuestionValidateSerializer(serializers.ModelSerializer):
             'choice_3',
             'choice_4'
         )
+
+class RankingValidateSerializer(serializers.Serializer):
+    sorted = serializers.ChoiceField(choices=['currect', 'count', 'rate'], default='rate')
+
+    def validate_sorted(self, value):
+        if value == 'currect':
+            return 'correct_answer_count'
+        if value == 'count':
+            return 'total_count'
+        if value == 'rate':
+            return 'correct_answer_rate'

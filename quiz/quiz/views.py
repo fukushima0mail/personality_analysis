@@ -6,7 +6,7 @@ from rest_framework.exceptions import NotFound, APIException
 from .models import Group, User, Answer, Question
 from .serializers import GetUserValidateSerializer, RegisterUserAnswerValidateSerializer, \
     GetQuestionValidateSerializer, RegisterGroupValidateSerializer, RegisterUserValidateSerializer, \
-    RegisterQuestionValidateSerializer, UpdateUserValidateSerializer
+    RegisterQuestionValidateSerializer, UpdateUserValidateSerializer, RankingValidateSerializer
 from django.http import HttpResponse
 import json
 import pandas
@@ -113,10 +113,10 @@ class SelectUserRecordView(APIView):
         if not answers.exists():
             raise NotFound(detail="The target record is not found.")
 
-        res = self._Make_response(answers)
+        res = self._make_response(answers)
         return Response(res)
 
-    def _Make_response(self, answers):
+    def _make_response(self, answers):
         df = pandas.DataFrame(answers)
         response = OrderedDict()
         response['total_count'] = df['is_correct'].count()
@@ -142,7 +142,6 @@ class SelectUserRecordView(APIView):
             detail['challenge_count'] = count
             detail['total_count'] = total_count
             detail['correct_answer_count'] = int(correct_answer_count)
-            detail['correct_answer_rate'] = round(correct_answer_rate, NUMBER_OF_DIGITS) * TO_PERCENTAGE
             detail['correct_answer_rate'] = '%.1f' % (round(correct_answer_rate, NUMBER_OF_DIGITS) * TO_PERCENTAGE)
             detail['group_name'] = list(df[df['challenge_count'] == count].get('group__group_name').to_dict().values()).pop()
             detail_list.append(detail)
@@ -222,6 +221,54 @@ class QuestionView(APIView):
             raise APIException(detail=e)
 
         return HttpResponse(status=204)
+
+
+class RankingView(APIView):
+    """/ranking"""
+
+    def get(self, request):
+        """ランキング取得"""
+        param = {}
+        if request.GET.get('sorted'):
+            param['sorted'] = request.GET.get('sorted')
+
+        data = RankingValidateSerializer(data=param)
+        data.is_valid(raise_exception=True)
+        data = data.validated_data
+
+        users = User.objects.filter(is_deleted=False).values('user_id')
+        if not users.exists():
+            raise NotFound(detail="user is not found.")
+        user_ids = [u.get('user_id') for u in users]
+
+        answers = Answer.objects.filter(is_deleted=False).values()
+        if not answers.exists():
+            raise NotFound(detail="answer is not found.")
+
+        return self._make_response(user_ids, answers, data['sorted'])
+
+    def _make_response(self, user_ids, answers, sort):
+
+        df = pandas.DataFrame(answers)
+        total_count = df.groupby('user_id')['is_correct'].count().to_dict()
+        correct_count = df.groupby('user_id')['is_correct'].sum().to_dict()
+        correct_rate = df.groupby('user_id')['is_correct'].mean().to_dict()
+
+        res = list()
+        for user_id in user_ids:
+            param = dict()
+            param["user_id"] = user_id
+            param["total_count"] = total_count.get(user_id, 0)
+            param["correct_answer_count"] = int(correct_count.get(user_id, 0))
+            param["correct_answer_rate"] = correct_rate.get(user_id, 0)
+            res.append(param)
+
+        res_sorted = sorted(res, reverse=True, key=lambda x: x[sort])
+
+        for i, r in enumerate(res_sorted):
+            res_sorted[i]['correct_answer_rate'] = '%.1f' % (round(r['correct_answer_rate'], NUMBER_OF_DIGITS) * TO_PERCENTAGE)
+
+        return Response(res_sorted)
 
 
 class SpecifiedQuestionView(APIView):

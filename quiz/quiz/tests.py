@@ -4,7 +4,7 @@ from django.test import TestCase
 from rest_framework.test import APIRequestFactory
 
 from quiz.models import Group, User, Answer, Question
-from quiz.views import GroupView, UserView, SelectUserAnswerView, QuestionView, SelectUserRecordView
+from quiz.views import GroupView, UserView, SelectUserAnswerView, QuestionView, SelectUserRecordView, RankingView
 
 factory = APIRequestFactory()
 UUID_PATTERN = '[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}'
@@ -714,3 +714,126 @@ class TestQuestion(TestCase):
         post_question = QuestionView.as_view()
         response = post_question(request)
         self.assertEqual(response.status_code, 400)
+
+class TestRanking(TestCase):
+    def setUp(self):
+        """初期処理"""
+        User.objects.create(user_id="1"*28, user_name='ユーザ1', mail_address='aiu1@mail.com', is_deleted=False)
+        User.objects.create(user_id="2"*28, user_name='ユーザ2', mail_address='aiu2@mail.com', is_deleted=False)
+        User.objects.create(user_id="3"*28, user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
+        User.objects.create(user_id="4"*28, user_name='ユーザ4', mail_address='aiu4@mail.com', is_deleted=False)
+        User.objects.create(user_id="5"*28, user_name='ユーザ5', mail_address='aiu5@mail.com', is_deleted=False)
+
+        Group.objects.create(group_name='名前1', is_deleted=False)
+        Group.objects.create(group_name='名前2', is_deleted=False)
+
+        user = User.objects.get(user_name='ユーザ1')
+        group1 = Group.objects.get(group_name='名前1')
+        group2 = Group.objects.get(group_name='名前2')
+        Question.objects.create(
+            group_id=group1.group_id,
+            user_id=user.user_id,
+            question_type='select',
+            question='問題1',
+            correct=1,
+            choice_1='a',
+            choice_2='b',
+            choice_3='c',
+            choice_4='d',
+            degree=1
+        )
+        Question.objects.create(
+            group_id=group2.group_id,
+            user_id=user.user_id,
+            question_type='select',
+            question='問題2',
+            correct=1,
+            choice_1='a',
+            choice_2='b',
+            choice_3='c',
+            choice_4='d',
+            degree=1
+        )
+
+    def test_get_ranking_success(self):
+        """正常系"""
+        user_id = User.objects.get(user_name='ユーザ1').user_id
+        group_id = Group.objects.get(group_name='名前1').group_id
+        question_id = Question.objects.get(question='問題1').question_id
+
+        # ユーザ1は60％正解
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        # ユーザ2は80％正解
+        user_id = User.objects.get(user_name='ユーザ2').user_id
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+
+        # ユーザ3は40％正解
+        user_id = User.objects.get(user_name='ユーザ3').user_id
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+
+        # ユーザ4は20％正解
+        user_id = User.objects.get(user_name='ユーザ4').user_id
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+
+        # ユーザ5は100％正解
+        user_id = User.objects.get(user_name='ユーザ5').user_id
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+
+        request = factory.get('/ranking')
+        get_ranking = RankingView.as_view()
+        response = get_ranking(request)
+        self.assertEqual(response.status_code, 200)
+        data = response.data
+        self.assertEqual(User.objects.get(user_name='ユーザ5').user_id, data[0]['user_id'])
+        self.assertEqual(User.objects.get(user_name='ユーザ2').user_id, data[1]['user_id'])
+        self.assertEqual(User.objects.get(user_name='ユーザ1').user_id, data[2]['user_id'])
+        self.assertEqual(User.objects.get(user_name='ユーザ3').user_id, data[3]['user_id'])
+        self.assertEqual(User.objects.get(user_name='ユーザ4').user_id, data[4]['user_id'])
+        self.assertEqual(5, data[2]['total_count'])
+        self.assertEqual(3, data[2]['correct_answer_count'])
+        self.assertEqual('60.0', data[2]['correct_answer_rate'])
