@@ -236,18 +236,17 @@ class RankingView(APIView):
         data.is_valid(raise_exception=True)
         data = data.validated_data
 
-        users = User.objects.filter(is_deleted=False).values('user_id')
+        users = User.objects.filter(is_deleted=False).values('user_id', 'user_name')
         if not users.exists():
             raise NotFound(detail="user is not found.")
-        user_ids = [u.get('user_id') for u in users]
 
         answers = Answer.objects.filter(is_deleted=False).values()
         if not answers.exists():
             raise NotFound(detail="answer is not found.")
 
-        return self._make_response(user_ids, answers, data['sorted'])
+        return self._make_response(users, answers, data['sorted'])
 
-    def _make_response(self, user_ids, answers, sort):
+    def _make_response(self, users, answers, sort):
 
         df = pandas.DataFrame(answers)
         total_count = df.groupby('user_id')['is_correct'].count().to_dict()
@@ -255,12 +254,12 @@ class RankingView(APIView):
         correct_rate = df.groupby('user_id')['is_correct'].mean().to_dict()
 
         res = list()
-        for user_id in user_ids:
+        for user in users:
             param = dict()
-            param["user_id"] = user_id
-            param["total_count"] = total_count.get(user_id, 0)
-            param["correct_answer_count"] = int(correct_count.get(user_id, 0))
-            param["correct_answer_rate"] = correct_rate.get(user_id, 0)
+            param["user_name"] = user.get('user_name')
+            param["total_count"] = total_count.get(user.get('user_id'), 0)
+            param["correct_answer_count"] = int(correct_count.get(user.get('user_id'), 0))
+            param["correct_answer_rate"] = correct_rate.get(user.get('user_id'), 0)
             res.append(param)
 
         res_sorted = sorted(res, reverse=True, key=lambda x: x[sort])
