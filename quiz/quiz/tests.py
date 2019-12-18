@@ -364,11 +364,13 @@ class TestSelectUserRecord(TestCase):
         self.assertEqual(2, detail[0].get('correct_answer_count'))
         self.assertEqual('100.0', detail[0].get('correct_answer_rate'))
         self.assertEqual(group.group_name, detail[0].get('group_name'))
+        self.assertEqual(1, detail[1].get('degree'))
         self.assertEqual(2, detail[1].get('challenge_count'))
         self.assertEqual(2, detail[1].get('total_count'))
         self.assertEqual(1, detail[1].get('correct_answer_count'))
         self.assertEqual('50.0', detail[1].get('correct_answer_rate'))
         self.assertEqual(group.group_name, detail[1].get('group_name'))
+        self.assertEqual(1, detail[2].get('degree'))
         self.assertEqual(3, detail[2].get('challenge_count'))
         self.assertEqual(1, detail[2].get('total_count'))
         self.assertEqual(1, detail[2].get('correct_answer_count'))
@@ -723,6 +725,8 @@ class TestRanking(TestCase):
         User.objects.create(user_id="3"*28, user_name='ユーザ3', mail_address='aiu3@mail.com', is_deleted=False)
         User.objects.create(user_id="4"*28, user_name='ユーザ4', mail_address='aiu4@mail.com', is_deleted=False)
         User.objects.create(user_id="5"*28, user_name='ユーザ5', mail_address='aiu5@mail.com', is_deleted=False)
+        User.objects.create(user_id="7"*28, user_name='ユーザ7', mail_address='aiu7@mail.com', is_deleted=False)
+        User.objects.create(user_id="6"*28, user_name='ユーザ6', mail_address='aiu6@mail.com', is_deleted=False)
 
         Group.objects.create(group_name='名前1', is_deleted=False)
         Group.objects.create(group_name='名前2', is_deleted=False)
@@ -824,6 +828,34 @@ class TestRanking(TestCase):
         Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
                               answer="1", is_correct=True, challenge_count=1)
 
+        # ユーザ7は40％正解(ソート用)
+        user_id = User.objects.get(user_name='ユーザ7').user_id
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+
+        # ユーザ6は40％正解(ソート用)
+        user_id = User.objects.get(user_name='ユーザ6').user_id
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=True, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+        Answer.objects.create(user_id=user_id, group_id=group_id, question_id=question_id,
+                              answer="1", is_correct=False, challenge_count=1)
+
+
+
         request = factory.get('/ranking')
         get_ranking = RankingView.as_view()
         response = get_ranking(request)
@@ -833,7 +865,9 @@ class TestRanking(TestCase):
         self.assertEqual(User.objects.get(user_name='ユーザ2').user_name, data[1]['user_name'])
         self.assertEqual(User.objects.get(user_name='ユーザ1').user_name, data[2]['user_name'])
         self.assertEqual(User.objects.get(user_name='ユーザ3').user_name, data[3]['user_name'])
-        self.assertEqual(User.objects.get(user_name='ユーザ4').user_name, data[4]['user_name'])
+        self.assertEqual(User.objects.get(user_name='ユーザ6').user_name, data[4]['user_name'])
+        self.assertEqual(User.objects.get(user_name='ユーザ7').user_name, data[5]['user_name'])
+        self.assertEqual(User.objects.get(user_name='ユーザ4').user_name, data[6]['user_name'])
         self.assertEqual(5, data[2]['total_count'])
         self.assertEqual(3, data[2]['correct_answer_count'])
         self.assertEqual('60.0', data[2]['correct_answer_rate'])
