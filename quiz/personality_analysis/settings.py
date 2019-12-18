@@ -26,7 +26,7 @@ SECRET_KEY = 'une8d6(n-2iv09y=b7pl_ex63rz=#h60!j+x_h12a*mz-5^7qe'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shiruki.net']
 
 
 # Application definition
@@ -103,11 +103,11 @@ WSGI_APPLICATION = 'personality_analysis.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'quiz',  # 作成したデータベース名
-        'USER': 'root',  # ログインユーザー名
-        'PASSWORD': 'password',
-        'HOST': 'db',
-        'PORT': '3306',
+        'NAME': os.environ['RDS_DB_NAME'],
+        'USER': os.environ['RDS_USERNAME'],
+        'PASSWORD': os.environ['RDS_PASSWORD'],
+        'HOST': os.environ['RDS_HOSTNAME'],
+        'PORT': os.environ['RDS_PORT'],
     }
 }
 
