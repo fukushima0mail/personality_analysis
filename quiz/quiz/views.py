@@ -108,8 +108,8 @@ class SelectUserRecordView(APIView):
         data.is_valid(raise_exception=True)
 
         answers = Answer.objects.filter(
-            **data.validated_data, is_deleted=False).select_related('group').order_by('challenge_count').values(
-            'group__group_name', 'is_correct', 'challenge_count')
+            **data.validated_data, is_deleted=False).select_related('group', 'question').order_by('challenge_count').values(
+            'group__group_name', 'is_correct', 'challenge_count', 'question__degree')
         if not answers.exists():
             raise NotFound(detail="The target record is not found.")
 
@@ -144,6 +144,7 @@ class SelectUserRecordView(APIView):
             detail['correct_answer_count'] = int(correct_answer_count)
             detail['correct_answer_rate'] = '%.1f' % (round(correct_answer_rate, NUMBER_OF_DIGITS) * TO_PERCENTAGE)
             detail['group_name'] = list(df[df['challenge_count'] == count].get('group__group_name').to_dict().values()).pop()
+            detail['degree'] = list(df[df['challenge_count'] == count].get('question__degree').to_dict().values()).pop()
             detail_list.append(detail)
             count += 1
 
@@ -240,7 +241,8 @@ class RankingView(APIView):
         if not users.exists():
             raise NotFound(detail="user is not found.")
 
-        answers = Answer.objects.filter(is_deleted=False).values()
+        answers = Answer.objects.filter(is_deleted=False).values(
+            'user_id', 'is_correct')
         if not answers.exists():
             raise NotFound(detail="answer is not found.")
 
@@ -262,8 +264,8 @@ class RankingView(APIView):
             param["correct_answer_rate"] = correct_rate.get(user.get('user_id'), 0)
             res.append(param)
 
-        res_sorted = sorted(res, reverse=True, key=lambda x: x[sort])
-
+        res_sorted = sorted(res, key=lambda x: x['user_name'])
+        res_sorted = sorted(res_sorted, reverse=True, key=lambda x: x[sort])
         for i, r in enumerate(res_sorted):
             res_sorted[i]['correct_answer_rate'] = '%.1f' % (round(r['correct_answer_rate'], NUMBER_OF_DIGITS) * TO_PERCENTAGE)
 
